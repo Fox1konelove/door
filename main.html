@@ -1459,6 +1459,55 @@ width: 100%;
 max-width: 300px;
 }
 }
+
+/* Исправление для отображения карточек */
+.hero, .categories, .slider-section, .main-content, .services, .contacts, .footer {
+transition: margin-left 0.3s ease;
+width: 100%;
+}
+
+.products-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+gap: 32px;
+margin-bottom: 80px;
+width: 100%;
+}
+
+/* Гарантируем, что карточки видны */
+.product-card {
+display: block;
+visibility: visible;
+opacity: 1;
+}
+
+/* При открытой боковой панели на десктопе */
+@media (min-width: 993px) {
+body.sidebar-open .hero,
+body.sidebar-open .categories,
+body.sidebar-open .slider-section,
+body.sidebar-open .main-content,
+body.sidebar-open .services,
+body.sidebar-open .contacts,
+body.sidebar-open .footer {
+margin-left: 280px;
+width: calc(100% - 280px);
+}
+}
+
+/* На планшетах и мобильных отключаем сдвиг */
+@media (max-width: 992px) {
+body.sidebar-open .hero,
+body.sidebar-open .categories,
+body.sidebar-open .slider-section,
+body.sidebar-open .main-content,
+body.sidebar-open .services,
+body.sidebar-open .contacts,
+body.sidebar-open .footer {
+margin-left: 0;
+width: 100%;
+}
+}
 }
 </style>
 </head>
@@ -1869,8 +1918,18 @@ overlay.classList.toggle("active");
 
 if (sidebar.classList.contains("active")) {
 body.classList.add("sidebar-open");
+// Сдвигаем основной контент
+document.querySelectorAll('.hero, .categories, .slider-section, .main-content, .services, .contacts, .footer').forEach(el => {
+el.style.transition = 'margin-left 0.3s ease';
+el.style.marginLeft = '280px';
+});
 } else {
 body.classList.remove("sidebar-open");
+// Возвращаем основной контент на место
+document.querySelectorAll('.hero, .categories, .slider-section, .main-content, .services, .contacts, .footer').forEach(el => {
+el.style.marginLeft = '0';
+});
+}
 }
 
 function closeSidebar() {
@@ -1881,6 +1940,11 @@ const body = document.body;
 sidebar.classList.remove("active");
 overlay.classList.remove("active");
 body.classList.remove("sidebar-open");
+
+// Возвращаем основной контент на место
+document.querySelectorAll('.hero, .categories, .slider-section, .main-content, .services, .contacts, .footer').forEach(el => {
+el.style.marginLeft = '0';
+});
 }
 // ============================================
 // МОДАЛЬНЫЕ ОКНА
@@ -2197,7 +2261,10 @@ renderProducts(currentFilter);
 }
 function renderProducts(category) {
 const filtered = category === "all" ? products : products.filter(p => p.category === category);
-document.getElementById("productsGrid").innerHTML = filtered.map(p => `
+const productsGrid = document.getElementById("productsGrid");
+if (!productsGrid) return;
+
+productsGrid.innerHTML = filtered.map(p => `
 <div class="product-card" data-id="${p.id}">
 <div class="product-image"><div class="img-note">📸 [${p.title}]</div></div>
 <div class="product-info">
@@ -2208,6 +2275,8 @@ document.getElementById("productsGrid").innerHTML = filtered.map(p => `
 </div>
 </div>
 `).join("");
+
+// Привязываем события
 document.querySelectorAll("#productsGrid .product-card").forEach(card => {
 card.onclick = (e) => {
 if(e.target.tagName === 'BUTTON') {
@@ -2321,7 +2390,6 @@ document.getElementById("chatInput").addEventListener("keypress", (e) => {
 if(e.key === "Enter") sendMessage();
 });
 });
-}
 </script>
 </body>
 </html>
