@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Двери-Мастер | Элитные двери премиум-класса</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+ROOT ПЕРЕМЕННЫЕ И ГЛОБАЛЬНЫЕ СТИЛИ
+============================================ */
+:root {
+--color-primary: #1a4a3f;
+--color-primary-dark: #0e362e;
+--color-accent: #c6a43b;
+--color-accent-dark: #a8852a;
+--color-bg-light: #faf8f5;
+--color-white: #ffffff;
+--color-gray-100: #f5f3ef;
+--color-gray-300: #e2dfd9;
+--color-gray-500: #9b9790;
+--color-gray-700: #4a4640;
+--color-text-dark: #2c2823;
+--color-text-light: #6b655c;
+--shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+--shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+--shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.12);
+--border-radius-sm: 12px;
+--border-radius-md: 20px;
+--border-radius-lg: 32px;
+--transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+background-color: var(--color-bg-light);
+color: var(--color-text-dark);
+line-height: 1.5;
+overflow-x: hidden;
+}
+.container {
+max-width: 1400px;
+margin: 0 auto;
+padding: 0 32px;
+}
+/* Типографика */
+.section-title {
+font-size: 2.5rem;
+font-weight: 600;
+text-align: center;
+margin-bottom: 56px;
+color: var(--color-text-dark);
+letter-spacing: -0.02em;
+}
+.section-title span {
+color: var(--color-accent);
+position: relative;
+}
+.section-title span::after {
+content: '';
+position: absolute;
+bottom: -8px;
+left: 0;
+right: 0;
+height: 3px;
+background: var(--color-accent);
+border-radius: 3px;
+}
+/* Кнопки */
+.btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+padding: 14px 32px;
+font-size: 1rem;
+font-weight: 500;
+font-family: inherit;
+border-radius: 60px;
+border: none;
+cursor: pointer;
+transition: var(--transition);
+text-decoration: none;
+}
+.btn-primary {
+background: var(--color-primary);
+color: var(--color-white);
+}
+.btn-primary:hover {
+background: var(--color-primary-dark);
+transform: translateY(-2px);
+box-shadow: var(--shadow-md);
+}
+.btn-outline {
+background: transparent;
+border: 2px solid var(--color-primary);
+color: var(--color-primary);
+}
+.btn-outline:hover {
+background: var(--color-primary);
+color: var(--color-white);
+transform: translateY(-2px);
+}
+/* ============================================
+ШАПКА САЙТА
+============================================ */
+.top-bar {
+background: var(--color-primary-dark);
+color: rgba(255, 255, 255, 0.85);
+font-size: 0.875rem;
+padding: 10px 0;
+}
+.top-bar .container {
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 16px;
+}
+.top-bar a {
+color: white;
+text-decoration: none;
+}
+.main-header {
+background: var(--color-white);
+position: sticky;
+top: 0;
+z-index: 1000;
+box-shadow: var(--shadow-sm);
+}
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+height: 80px;
+}
+.logo-area {
+display: flex;
+align-items: center;
+gap: 32px;
+}
+.logo {
+font-size: 1.75rem;
+font-weight: 700;
+text-decoration: none;
+color: var(--color-primary);
+cursor: pointer;
+}
+.logo span {
+color: var(--color-accent);
+}
+.nav-links {
+display: flex;
+gap: 32px;
+align-items: center;
+}
+.nav-links a {
+text-decoration: none;
+color: var(--color-text-dark);
+font-weight: 500;
+transition: var(--transition);
+cursor: pointer;
+}
+.nav-links a:hover {
+color: var(--color-accent);
+}
+.header-actions {
+display: flex;
+gap: 12px;
+align-items: center;
+}
+.icon-btn {
+background: transparent;
+border: none;
+font-size: 1.3rem;
+cursor: pointer;
+padding: 8px;
+border-radius: 50%;
+transition: var(--transition);
+color: var(--color-text-dark);
+position: relative;
+}
+.icon-btn:hover {
+background: var(--color-gray-100);
+}
+.cart-badge {
+position: absolute;
+top: -4px;
+right: -4px;
+background: var(--color-accent);
+color: white;
+font-size: 0.7rem;
+font-weight: 600;
+width: 18px;
+height: 18px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+/* ============================================
+ЛЕВАЯ ПАНЕЛЬ КАТАЛОГА
+============================================ */
+.left-sidebar {
+position: fixed;
+left: 0;
+top: 80px;
+width: 280px;
+height: calc(100vh - 80px);
+background: var(--color-white);
+border-right: 1px solid var(--color-gray-300);
+padding: 24px 16px;
+overflow-y: auto;
+z-index: 999;
+transform: translateX(-100%);
+transition: var(--transition);
+}
+.left-sidebar.active {
+transform: translateX(0);
+}
+.sidebar-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 24px;
+padding-bottom: 16px;
+border-bottom: 1px solid var(--color-gray-300);
+}
+.sidebar-header h3 {
+font-size: 1.1rem;
+font-weight: 600;
+color: var(--color-primary);
+}
+.sidebar-close {
+background: none;
+border: none;
+font-size: 1.5rem;
+cursor: pointer;
+color: var(--color-text-light);
+}
+.sidebar-close:hover {
+color: var(--color-accent);
+}
+.sidebar-category {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 14px 16px;
+border-radius: var(--border-radius-sm);
+text-decoration: none;
+color: var(--color-text-dark);
+transition: var(--transition);
+font-weight: 500;
+cursor: pointer;
+margin-bottom: 8px;
+}
+.sidebar-category:hover {
+background: var(--color-gray-100);
+}
+.sidebar-category.active {
+background: var(--color-primary);
+color: white;
+}
+.sidebar-category-icon {
+font-size: 1.3rem;
+}
+.sidebar-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5);
+z-index: 998;
+display: none;
+}
+.sidebar-overlay.active {
+display: block;
+}
+/* ============================================
+ГЛАВНЫЙ ЭКРАН (HERO)
+============================================ */
+.hero {
+padding: 80px 0;
+background: linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-white) 100%);
+margin-left: 0;
+transition: var(--transition);
+}
+.hero.with-sidebar {
+margin-left: 280px;
+}
+.hero-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 60px;
+align-items: center;
+}
+.hero-content h1 {
+font-size: 3.2rem;
+font-weight: 700;
+line-height: 1.2;
+margin-bottom: 24px;
+}
+.hero-content h1 span {
+color: var(--color-accent);
+}
+.hero-content p {
+font-size: 1.125rem;
+color: var(--color-text-light);
+margin-bottom: 32px;
+}
+.hero-image {
+background: linear-gradient(135deg, var(--color-gray-300) 0%, #d1cdc4 100%);
+border-radius: var(--border-radius-lg);
+height: 460px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.image-placeholder {
+background: rgba(0, 0, 0, 0.6);
+color: white;
+padding: 12px 24px;
+border-radius: 60px;
+font-size: 0.9rem;
+}
+/* ============================================
+КАТЕГОРИИ
+============================================ */
+.categories {
+padding: 80px 0;
+background: var(--color-white);
+margin-left: 0;
+transition: var(--transition);
+}
+.categories.with-sidebar {
+margin-left: 280px;
+}
+.categories-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 32px;
+}
+.category-card {
+background: var(--color-gray-100);
+border-radius: var(--border-radius-md);
+overflow: hidden;
+cursor: pointer;
+transition: var(--transition);
+}
+.category-card:hover {
+transform: translateY(-8px);
+box-shadow: var(--shadow-md);
+}
+.category-image {
+height: 260px;
+background: linear-gradient(135deg, #e0dbd2 0%, #ccc6bc 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.img-note {
+background: rgba(0, 0, 0, 0.7);
+color: white;
+padding: 8px 16px;
+border-radius: 40px;
+font-size: 0.85rem;
+}
+.category-card h3 {
+font-size: 1.5rem;
+font-weight: 600;
+margin: 24px 0 12px;
+text-align: center;
+}
+.category-card p {
+text-align: center;
+color: var(--color-text-light);
+padding-bottom: 24px;
+}
+/* ============================================
+СЛАЙДЕР
+============================================ */
+.slider-section {
+padding: 80px 0;
+background: var(--color-gray-100);
+margin-left: 0;
+transition: var(--transition);
+}
+.slider-section.with-sidebar {
+margin-left: 280px;
+}
+.slider-track {
+display: flex;
+gap: 28px;
+overflow-x: auto;
+scroll-behavior: smooth;
+padding: 8px 4px 24px;
+}
+.slider-track::-webkit-scrollbar {
+height: 6px;
+}
+.slider-track::-webkit-scrollbar-track {
+background: var(--color-gray-300);
+border-radius: 10px;
+}
+.slider-track::-webkit-scrollbar-thumb {
+background: var(--color-primary);
+border-radius: 10px;
+}
+/* ============================================
+КАРТОЧКИ ТОВАРОВ - ЕДИНЫЙ СТИЛЬ
+============================================ */
+.product-card {
+min-width: 290px;
+background: var(--color-white);
+border-radius: var(--border-radius-md);
+overflow: hidden;
+cursor: pointer;
+box-shadow: var(--shadow-sm);
+transition: var(--transition);
+}
+.product-card:hover {
+transform: translateY(-6px);
+box-shadow: var(--shadow-md);
+}
+.product-image {
+height: 240px;
+background: linear-gradient(135deg, #eae7e2 0%, #ddd8d0 100%);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.product-info {
+padding: 20px;
+}
+.product-title {
+font-size: 1.1rem;
+font-weight: 600;
+margin-bottom: 8px;
+}
+.product-material {
+font-size: 0.85rem;
+color: var(--color-text-light);
+margin-bottom: 12px;
+}
+.product-price {
+font-size: 1.3rem;
+font-weight: 700;
+color: var(--color-primary);
+}
+.slider-controls {
+display: flex;
+justify-content: center;
+gap: 16px;
+margin-top: 32px;
+}
+.slider-arrow {
+width: 48px;
+height: 48px;
+border-radius: 50%;
+background: var(--color-white);
+border: 1px solid var(--color-gray-300);
+cursor: pointer;
+font-size: 1.2rem;
+}
+.slider-arrow:hover {
+background: var(--color-primary);
+color: white;
+}
+/* ============================================
+ФИЛЬТРЫ И КАТАЛОГ
+============================================ */
+.main-content {
+margin-left: 0;
+transition: var(--transition);
+}
+.main-content.with-sidebar {
+margin-left: 280px;
+}
+.filters {
+display: flex;
+justify-content: center;
+gap: 12px;
+flex-wrap: wrap;
+margin: 40px 0 48px;
+}
+.filter-chip {
+padding: 10px 28px;
+background: var(--color-white);
+border: 1px solid var(--color-gray-300);
+border-radius: 60px;
+cursor: pointer;
+transition: var(--transition);
+font-weight: 500;
+}
+.filter-chip:hover {
+border-color: var(--color-primary);
+color: var(--color-primary);
+}
+.filter-chip.active {
+background: var(--color-primary);
+color: white;
+}
+.products-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+gap: 32px;
+margin-bottom: 80px;
+}
+/* ============================================
+🌟 УСЛУГИ - ПРЕМИУМ ДИЗАЙН
+============================================ */
+.services {
+padding: 100px 0;
+background: linear-gradient(180deg, var(--color-white) 0%, var(--color-gray-100) 100%);
+margin-left: 0;
+transition: var(--transition);
+}
+.services.with-sidebar {
+margin-left: 280px;
+}
+.services-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 40px;
+}
+.service-card {
+background: var(--color-white);
+border-radius: var(--border-radius-md);
+padding: 40px 32px;
+text-align: center;
+box-shadow: var(--shadow-sm);
+transition: var(--transition);
+border: 1px solid var(--color-gray-300);
+position: relative;
+overflow: hidden;
+}
+.service-card::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 4px;
+background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+transform: scaleX(0);
+transition: var(--transition);
+}
+.service-card:hover {
+transform: translateY(-12px);
+box-shadow: var(--shadow-lg);
+border-color: var(--color-accent);
+}
+.service-card:hover::before {
+transform: scaleX(1);
+}
+.service-icon-wrapper {
+width: 80px;
+height: 80px;
+background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 24px;
+box-shadow: var(--shadow-md);
+}
+.service-icon {
+font-size: 2.5rem;
+}
+.service-card h4 {
+font-size: 1.25rem;
+font-weight: 600;
+margin-bottom: 16px;
+color: var(--color-text-dark);
+}
+.service-card p {
+font-size: 0.95rem;
+color: var(--color-text-light);
+line-height: 1.6;
+}
+.service-badge {
+display: inline-block;
+background: var(--color-accent);
+color: white;
+padding: 4px 12px;
+border-radius: 20px;
+font-size: 0.75rem;
+font-weight: 600;
+margin-top: 16px;
+}
+/* ============================================
+СТРАНИЦА ТОВАРА
+============================================ */
+.product-detail-page {
+padding: 40px 0 60px;
+display: none;
+}
+.product-detail-page.active {
+display: block;
+}
+.breadcrumbs {
+padding: 0 0 24px;
+font-size: 0.875rem;
+color: var(--color-text-light);
+}
+.breadcrumbs a {
+color: var(--color-text-light);
+text-decoration: none;
+cursor: pointer;
+}
+.breadcrumbs a:hover {
+color: var(--color-accent);
+}
+.product-detail-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 60px;
+margin-bottom: 60px;
+}
+.product-gallery {
+position: sticky;
+top: 100px;
+}
+.main-image {
+background: var(--color-gray-100);
+border-radius: var(--border-radius-md);
+overflow: hidden;
+margin-bottom: 20px;
+aspect-ratio: 1 / 1;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.main-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.thumbnail-list {
+display: flex;
+gap: 12px;
+}
+.thumbnail {
+width: 80px;
+height: 80px;
+border-radius: 12px;
+overflow: hidden;
+cursor: pointer;
+border: 2px solid transparent;
+}
+.thumbnail.active {
+border-color: var(--color-accent);
+}
+.thumbnail img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.product-detail-title {
+font-size: 2rem;
+font-weight: 600;
+margin-bottom: 12px;
+}
+.product-detail-sku {
+color: var(--color-text-light);
+font-size: 0.875rem;
+margin-bottom: 20px;
+}
+.product-detail-current-price {
+font-size: 2rem;
+font-weight: 700;
+color: var(--color-primary);
+}
+.product-detail-old-price {
+font-size: 1.1rem;
+color: var(--color-gray-500);
+text-decoration: line-through;
+margin-left: 12px;
+}
+.option-group {
+margin-bottom: 24px;
+}
+.option-label {
+font-weight: 600;
+margin-bottom: 12px;
+display: block;
+}
+.size-options, .color-options {
+display: flex;
+gap: 12px;
+flex-wrap: wrap;
+}
+.size-btn, .color-btn {
+padding: 10px 24px;
+border: 1px solid var(--color-gray-300);
+background: white;
+border-radius: 60px;
+cursor: pointer;
+transition: var(--transition);
+font-family: inherit;
+}
+.size-btn.active, .color-btn.active {
+background: var(--color-primary);
+color: white;
+border-color: var(--color-primary);
+}
+.color-dot {
+width: 20px;
+height: 20px;
+border-radius: 50%;
+display: inline-block;
+margin-right: 8px;
+vertical-align: middle;
+}
+.add-to-cart-btn {
+width: 100%;
+padding: 16px;
+font-size: 1.1rem;
+margin: 16px 0 24px;
+}
+.product-tabs {
+margin-top: 40px;
+border-top: 1px solid var(--color-gray-300);
+}
+.tab-buttons {
+display: flex;
+gap: 32px;
+border-bottom: 1px solid var(--color-gray-300);
+}
+.tab-btn {
+background: none;
+border: none;
+padding: 16px 0;
+font-size: 1rem;
+font-weight: 500;
+cursor: pointer;
+color: var(--color-text-light);
+}
+.tab-btn.active {
+color: var(--color-primary);
+border-bottom: 2px solid var(--color-primary);
+}
+.tab-content {
+padding: 32px 0;
+display: none;
+}
+.tab-content.active {
+display: block;
+}
+.specs-table {
+width: 100%;
+border-collapse: collapse;
+}
+.specs-table tr {
+border-bottom: 1px solid var(--color-gray-300);
+}
+.specs-table td {
+padding: 12px 0;
+}
+.specs-table td:first-child {
+width: 200px;
+color: var(--color-text-light);
+}
+/* ============================================
+МОДАЛЬНЫЕ ОКНА
+============================================ */
+.modal {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.7);
+z-index: 2000;
+backdrop-filter: blur(4px);
+animation: fadeIn 0.2s;
+}
+.modal-content {
+background: var(--color-white);
+margin: 60px auto;
+padding: 32px;
+max-width: 550px;
+border-radius: var(--border-radius-md);
+position: relative;
+animation: slideUp 0.3s ease;
+max-height: 80vh;
+overflow-y: auto;
+}
+.modal-close {
+position: absolute;
+right: 20px;
+top: 20px;
+font-size: 28px;
+cursor: pointer;
+color: var(--color-text-light);
+width: 32px;
+height: 32px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50%;
+}
+.modal-close:hover {
+background: var(--color-gray-100);
+color: var(--color-accent);
+}
+/* Корзина */
+.cart-item {
+display: flex;
+align-items: center;
+gap: 16px;
+padding: 16px 0;
+border-bottom: 1px solid var(--color-gray-300);
+}
+.cart-item-image {
+width: 70px;
+height: 70px;
+border-radius: 12px;
+overflow: hidden;
+background: var(--color-gray-100);
+}
+.cart-item-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.cart-item-info {
+flex: 1;
+}
+.cart-item-title {
+font-weight: 600;
+margin-bottom: 4px;
+}
+.cart-item-options {
+font-size: 0.8rem;
+color: var(--color-text-light);
+}
+.cart-item-price {
+font-weight: 600;
+color: var(--color-primary);
+}
+.cart-item-quantity {
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.quantity-btn {
+width: 32px;
+height: 32px;
+border-radius: 50%;
+border: 1px solid var(--color-gray-300);
+background: white;
+cursor: pointer;
+font-size: 1.2rem;
+}
+.quantity-btn:hover {
+background: var(--color-primary);
+color: white;
+}
+.cart-item-remove {
+background: none;
+border: none;
+font-size: 1.2rem;
+cursor: pointer;
+color: var(--color-gray-500);
+padding: 8px;
+border-radius: 50%;
+}
+.cart-item-remove:hover {
+background: var(--color-gray-100);
+color: var(--color-accent);
+}
+.cart-summary {
+margin-top: 24px;
+padding-top: 24px;
+border-top: 2px solid var(--color-gray-300);
+}
+.cart-summary-row {
+display: flex;
+justify-content: space-between;
+margin-bottom: 12px;
+}
+.cart-summary-total {
+font-size: 1.3rem;
+font-weight: 700;
+color: var(--color-primary);
+margin-top: 16px;
+padding-top: 16px;
+border-top: 1px solid var(--color-gray-300);
+}
+/* Авторизация */
+.auth-form {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+.auth-form input {
+padding: 14px 18px;
+border: 1px solid var(--color-gray-300);
+border-radius: var(--border-radius-sm);
+font-family: inherit;
+font-size: 1rem;
+}
+.auth-form input:focus {
+outline: none;
+border-color: var(--color-primary);
+}
+.auth-switch {
+text-align: center;
+margin-top: 20px;
+color: var(--color-text-light);
+}
+.auth-switch a {
+color: var(--color-primary);
+cursor: pointer;
+font-weight: 600;
+}
+/* Поиск */
+.search-input-wrapper input {
+width: 100%;
+padding: 14px 18px;
+border: 1px solid var(--color-gray-300);
+border-radius: var(--border-radius-sm);
+font-size: 1rem;
+}
+.search-results-list {
+max-height: 400px;
+overflow-y: auto;
+margin-top: 20px;
+}
+.search-result-item {
+display: flex;
+align-items: center;
+gap: 16px;
+padding: 12px;
+border-bottom: 1px solid var(--color-gray-300);
+cursor: pointer;
+}
+.search-result-item:hover {
+background: var(--color-gray-100);
+}
+.search-result-img {
+width: 50px;
+height: 50px;
+border-radius: 8px;
+overflow: hidden;
+}
+.search-result-img img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+.search-result-title {
+font-weight: 600;
+margin-bottom: 4px;
+}
+/* ============================================
+📞 КОНТАКТЫ - ОБНОВЛЁННЫЙ ДИЗАЙН
+============================================ */
+.contacts {
+padding: 80px 0;
+background: var(--color-white);
+margin-left: 0;
+transition: var(--transition);
+}
+.contacts.with-sidebar {
+margin-left: 280px;
+}
+.contacts-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 60px;
+}
+.contact-info-block {
+background: var(--color-gray-100);
+padding: 40px;
+border-radius: var(--border-radius-md);
+}
+.contact-info-block h4 {
+font-size: 1.5rem;
+font-weight: 600;
+margin-bottom: 32px;
+color: var(--color-text-dark);
+}
+.contact-item {
+display: flex;
+align-items: flex-start;
+gap: 16px;
+margin-bottom: 24px;
+padding: 20px;
+background: var(--color-white);
+border-radius: var(--border-radius-sm);
+box-shadow: var(--shadow-sm);
+transition: var(--transition);
+}
+.contact-item:hover {
+transform: translateX(8px);
+box-shadow: var(--shadow-md);
+}
+.contact-item-icon {
+width: 48px;
+height: 48px;
+background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+border-radius: 12px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.5rem;
+flex-shrink: 0;
+}
+.contact-item-content {
+flex: 1;
+}
+.contact-item-label {
+font-size: 0.85rem;
+color: var(--color-text-light);
+margin-bottom: 4px;
+}
+.contact-item-value {
+font-size: 1rem;
+font-weight: 500;
+color: var(--color-text-dark);
+}
+.contact-item-value a {
+color: var(--color-primary);
+text-decoration: none;
+transition: var(--transition);
+}
+.contact-item-value a:hover {
+color: var(--color-accent);
+}
+.working-hours {
+margin-top: 32px;
+padding: 24px;
+background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+border-radius: var(--border-radius-sm);
+color: white;
+}
+.working-hours h5 {
+font-size: 1.1rem;
+margin-bottom: 12px;
+}
+.working-hours p {
+font-size: 0.95rem;
+opacity: 0.9;
+}
+/* ============================================
+💬 ПЛАВАЮЩИЙ ЧАТ - ПРАВЫЙ НИЖНИЙ УГОЛ
+============================================ */
+.chat-widget {
+position: fixed;
+bottom: 30px;
+right: 30px;
+z-index: 9999;
+}
+.chat-button {
+width: 64px;
+height: 64px;
+background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+border-radius: 50%;
+border: none;
+cursor: pointer;
+box-shadow: var(--shadow-lg);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.8rem;
+transition: var(--transition);
+animation: pulse 2s infinite;
+}
+.chat-button:hover {
+transform: scale(1.1);
+}
+.chat-button .chat-icon-open {
+display: block;
+}
+.chat-button .chat-icon-close {
+display: none;
+}
+.chat-button.active .chat-icon-open {
+display: none;
+}
+.chat-button.active .chat-icon-close {
+display: block;
+}
+@keyframes pulse {
+0%, 100% { box-shadow: 0 0 0 0 rgba(26, 74, 63, 0.4); }
+50% { box-shadow: 0 0 0 15px rgba(26, 74, 63, 0); }
+}
+.chat-window {
+position: absolute;
+bottom: 80px;
+right: 0;
+width: 350px;
+background: var(--color-white);
+border-radius: var(--border-radius-md);
+box-shadow: var(--shadow-lg);
+overflow: hidden;
+display: none;
+flex-direction: column;
+animation: slideUp 0.3s ease;
+}
+.chat-window.active {
+display: flex;
+}
+.chat-header {
+background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+color: white;
+padding: 20px;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.chat-avatar {
+width: 40px;
+height: 40px;
+background: var(--color-white);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.2rem;
+}
+.chat-header-info h5 {
+font-size: 1rem;
+font-weight: 600;
+}
+.chat-header-info p {
+font-size: 0.8rem;
+opacity: 0.9;
+}
+.chat-status {
+width: 8px;
+height: 8px;
+background: #4ade80;
+border-radius: 50%;
+display: inline-block;
+margin-right: 6px;
+}
+.chat-body {
+padding: 20px;
+min-height: 200px;
+max-height: 300px;
+overflow-y: auto;
+background: var(--color-gray-100);
+}
+.chat-message {
+margin-bottom: 16px;
+}
+.chat-message.manager {
+text-align: left;
+}
+.chat-message.manager .message-bubble {
+background: var(--color-white);
+border-radius: 16px 16px 16px 4px;
+}
+.chat-message.user {
+text-align: right;
+}
+.chat-message.user .message-bubble {
+background: var(--color-primary);
+color: white;
+border-radius: 16px 16px 4px 16px;
+}
+.message-bubble {
+display: inline-block;
+padding: 12px 16px;
+font-size: 0.9rem;
+line-height: 1.4;
+max-width: 80%;
+}
+.message-time {
+font-size: 0.7rem;
+color: var(--color-text-light);
+margin-top: 4px;
+}
+.chat-footer {
+padding: 16px;
+background: var(--color-white);
+border-top: 1px solid var(--color-gray-300);
+}
+.chat-input-wrapper {
+display: flex;
+gap: 12px;
+}
+.chat-input {
+flex: 1;
+padding: 12px 16px;
+border: 1px solid var(--color-gray-300);
+border-radius: 60px;
+font-family: inherit;
+font-size: 0.9rem;
+}
+.chat-input:focus {
+outline: none;
+border-color: var(--color-primary);
+}
+.chat-send-btn {
+width: 44px;
+height: 44px;
+background: var(--color-primary);
+color: white;
+border: none;
+border-radius: 50%;
+cursor: pointer;
+font-size: 1.2rem;
+transition: var(--transition);
+}
+.chat-send-btn:hover {
+background: var(--color-primary-dark);
+}
+/* ============================================
+ПОДВАЛ
+============================================ */
+.footer {
+background: var(--color-primary-dark);
+color: rgba(255, 255, 255, 0.8);
+padding: 60px 0 30px;
+margin-left: 0;
+transition: var(--transition);
+}
+.footer.with-sidebar {
+margin-left: 280px;
+}
+.footer-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+gap: 48px;
+margin-bottom: 48px;
+}
+.footer-bottom {
+text-align: center;
+padding-top: 30px;
+border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+/* Кнопка открытия каталога */
+.catalog-toggle-btn {
+background: var(--color-primary);
+color: white;
+padding: 10px 20px;
+border-radius: 60px;
+border: none;
+cursor: pointer;
+font-weight: 500;
+display: flex;
+align-items: center;
+gap: 8px;
+font-size: 0.95rem;
+}
+.catalog-toggle-btn:hover {
+background: var(--color-primary-dark);
+}
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+@keyframes slideUp {
+from {
+opacity: 0;
+transform: translateY(30px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+@media (max-width: 992px) {
+.hero-grid, .product-detail-grid, .contacts-grid {
+grid-template-columns: 1fr;
+gap: 40px;
+}
+.navbar {
+flex-wrap: wrap;
+height: auto;
+gap: 16px;
+padding: 16px 0;
+}
+.nav-links {
+order: 3;
+width: 100%;
+justify-content: center;
+flex-wrap: wrap;
+}
+.left-sidebar {
+width: 260px;
+}
+.hero.with-sidebar, .categories.with-sidebar, .slider-section.with-sidebar,
+.main-content.with-sidebar, .services.with-sidebar, .contacts.with-sidebar,
+.footer.with-sidebar {
+margin-left: 0;
+}
+}
+@media (max-width: 768px) {
+.container {
+padding: 0 20px;
+}
+.section-title {
+font-size: 2rem;
+}
+.chat-window {
+width: 300px;
+right: -50px;
+}
+.chat-widget {
+bottom: 20px;
+right: 20px;
+}
+.left-sidebar {
+width: 100%;
+max-width: 300px;
+}
+}
+</style>
+</head>
+<body>
+<!-- ==================== ВЕРХНЯЯ ПАНЕЛЬ ==================== -->
+<div class="top-bar">
+<div class="container">
+<div>
+<span>📍 г. Москва, ул. Строителей, 15</span>
+<span>📞 <a href="tel:+74951234567">+7 (495) 123-45-67</a></span>
+<span>✉️ <a href="mailto:info@dveri-master.ru">info@dveri-master.ru</a></span>
+</div>
+<div>⏰ Пн-Сб: 9:00–20:00, Вс: 10:00–18:00</div>
+</div>
+</div>
+<!-- ==================== ОСНОВНАЯ ШАПКА ==================== -->
+<header class="main-header">
+<div class="container">
+<div class="navbar">
+<div class="logo-area">
+<div class="logo" id="logoLink">Двери<span>Мастер</span></div>
+<button class="catalog-toggle-btn" id="catalogToggleBtn">☰ Каталог</button>
+</div>
+<div class="nav-links">
+<a data-section="services">Услуги</a>
+<a data-section="delivery">Доставка</a>
+<a data-section="contacts">Контакты</a>
+</div>
+<div class="header-actions">
+<button class="icon-btn" id="accountBtn">👤</button>
+<button class="icon-btn" id="searchBtn">🔍</button>
+<button class="icon-btn" id="cartBtn">🛒<span class="cart-badge" id="cartCount">0</span></button>
+</div>
+</div>
+</div>
+</header>
+<!-- ==================== ЛЕВАЯ ПАНЕЛЬ КАТАЛОГА ==================== -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<aside class="left-sidebar" id="leftSidebar">
+<div class="sidebar-header">
+<h3>📁 Каталог дверей</h3>
+<button class="sidebar-close" id="sidebarClose">&times;</button>
+</div>
+<div class="sidebar-category active" data-category="all">
+<span class="sidebar-category-icon">🚪</span>
+<span>Все двери</span>
+</div>
+<div class="sidebar-category" data-category="Межкомнатные">
+<span class="sidebar-category-icon">🏠</span>
+<span>Межкомнатные</span>
+</div>
+<div class="sidebar-category" data-category="Входные">
+<span class="sidebar-category-icon">🔒</span>
+<span>Входные</span>
+</div>
+<div class="sidebar-category" data-category="Офисные">
+<span class="sidebar-category-icon">🏢</span>
+<span>Офисные</span>
+</div>
+<div class="sidebar-category" data-category="Противопожарные">
+<span class="sidebar-category-icon">🔥</span>
+<span>Противопожарные</span>
+</div>
+<div class="sidebar-category" data-category="Раздвижные">
+<span class="sidebar-category-icon">↔️</span>
+<span>Раздвижные</span>
+</div>
+<div class="sidebar-category" data-category="Стеклянные">
+<span class="sidebar-category-icon">🪟</span>
+<span>Стеклянные</span>
+</div>
+</aside>
+<!-- ==================== ГЛАВНАЯ СТРАНИЦА ==================== -->
+<div id="mainPage">
+<section class="hero">
+<div class="container">
+<div class="hero-grid">
+<div class="hero-content">
+<h1>Премиальные двери <span>с установкой</span> под ключ</h1>
+<p>Собственное производство, эксклюзивные материалы, профессиональный монтаж за 1 день. Гарантия качества до 10 лет.</p>
+<div class="hero-buttons">
+<button class="btn btn-primary" id="catalogScrollBtn">Выбрать дверь</button>
+<button class="btn btn-outline" id="freeMeasureBtn">Бесплатный замер</button>
+</div>
+</div>
+<div class="hero-image">
+<div class="image-placeholder">📸 [ВСТАВИТЬ: главное фото двери]</div>
+</div>
+</div>
+</div>
+</section>
+<section class="categories">
+<div class="container">
+<h2 class="section-title">Каталог <span>коллекций</span></h2>
+<div class="categories-grid" id="categoriesGrid"></div>
+</div>
+</section>
+<section class="slider-section">
+<div class="container">
+<h2 class="section-title">Популярные <span>модели</span></h2>
+<div class="slider-container">
+<div class="slider-track" id="sliderTrack"></div>
+<div class="slider-controls">
+<button class="slider-arrow" id="prevSlide">←</button>
+<button class="slider-arrow" id="nextSlide">→</button>
+</div>
+</div>
+</div>
+</section>
+<div class="container main-content">
+<div class="filters" id="filtersContainer"></div>
+<div class="products-grid" id="productsGrid"></div>
+</div>
+<!-- 🌟 УСЛУГИ - ПРЕМИУМ ДИЗАЙН -->
+<section id="services" class="services">
+<div class="container">
+<h2 class="section-title">Наши <span>Услуги</span></h2>
+<div class="services-grid">
+<div class="service-card">
+<div class="service-icon-wrapper">
+<span class="service-icon">🏭</span>
+</div>
+<h4>Собственное производство</h4>
+<p>Полный контроль качества на каждом этапе изготовления. Используем только проверенные материалы от надёжных поставщиков.</p>
+<span class="service-badge">10+ лет опыта</span>
+</div>
+<div class="service-card">
+<div class="service-icon-wrapper">
+<span class="service-icon">📏</span>
+</div>
+<h4>Бесплатный замер</h4>
+<p>Выезд профессионального инженера в день обращения. Точные замеры и консультация по выбору оптимального решения.</p>
+<span class="service-badge">Бесплатно</span>
+</div>
+<div class="service-card">
+<div class="service-icon-wrapper">
+<span class="service-icon">🔧</span>
+</div>
+<h4>Монтаж за 1 день</h4>
+<p>Чистая установка без пыли и грязи. Профессиональное оборудование и опытные мастера с многолетним стажем.</p>
+<span class="service-badge">Быстро</span>
+</div>
+<div class="service-card">
+<div class="service-icon-wrapper">
+<span class="service-icon">📜</span>
+</div>
+<h4>Гарантия 10 лет</h4>
+<p>Официальная гарантия на все двери и монтажные работы. Сервисное обслуживание и поддержка на протяжении всего срока.</p>
+<span class="service-badge">Надёжно</span>
+</div>
+</div>
+</div>
+</section>
+<section id="delivery" style="padding:80px 0; background:var(--color-gray-100);">
+<div class="container">
+<h2 class="section-title">Доставка и <span>оплата</span></h2>
+<div style="background:white; padding:48px; border-radius:20px;">
+<h3>🚚 Условия доставки</h3>
+<ul style="margin-top:16px; padding-left:20px;"><li>По Москве: бесплатно от 30 000 ₽</li><li>Подъём на этаж: бесплатно</li><li>Регионы: транспортными компаниями</li></ul>
+</div>
+</div>
+</section>
+<!-- 📞 КОНТАКТЫ - БЕЗ ФОРМЫ, ТОЛЬКО ИНФОРМАЦИЯ -->
+<section id="contacts" class="contacts">
+<div class="container">
+<h2 class="section-title">Свяжитесь <span>с нами</span></h2>
+<div class="contacts-grid">
+<div class="contact-info-block">
+<h4>Контактная информация</h4>
+<div class="contact-item">
+<div class="contact-item-icon">📍</div>
+<div class="contact-item-content">
+<div class="contact-item-label">Адрес</div>
+<div class="contact-item-value">г. Москва, ул. Строителей, 15</div>
+</div>
+</div>
+<div class="contact-item">
+<div class="contact-item-icon">📞</div>
+<div class="contact-item-content">
+<div class="contact-item-label">Телефон</div>
+<div class="contact-item-value"><a href="tel:+74951234567">+7 (495) 123-45-67</a></div>
+</div>
+</div>
+<div class="contact-item">
+<div class="contact-item-icon">✉️</div>
+<div class="contact-item-content">
+<div class="contact-item-label">Email</div>
+<div class="contact-item-value"><a href="mailto:info@dveri-master.ru">info@dveri-master.ru</a></div>
+</div>
+</div>
+<div class="contact-item">
+<div class="contact-item-icon">💬</div>
+<div class="contact-item-content">
+<div class="contact-item-label">Telegram</div>
+<div class="contact-item-value"><a href="https://t.me/dveri_master" class="telegram-link" target="_blank">@dveri_master</a></div>
+</div>
+</div>
+<div class="contact-item">
+<div class="contact-item-icon">🌐</div>
+<div class="contact-item-content">
+<div class="contact-item-label">Сайт</div>
+<div class="contact-item-value">www.dveri-master.ru</div>
+</div>
+</div>
+<div class="working-hours">
+<h5>⏰ Режим работы</h5>
+<p>Понедельник – Суббота: 9:00 – 20:00</p>
+<p>Воскресенье: 10:00 – 18:00</p>
+</div>
+</div>
+<div class="contact-info-block" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); color: white;">
+<h4 style="color: white;">💬 Напишите менеджеру</h4>
+<p style="margin-bottom: 24px; opacity: 0.9;">Есть вопросы? Нажмите на кнопку чата в правом нижнем углу экрана для быстрой связи с нашим специалистом.</p>
+<div style="display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; align-items: center; gap: 12px;">
+<span style="font-size: 1.5rem;">✅</span>
+<span>Ответ в течение 5 минут</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px;">
+<span style="font-size: 1.5rem;">✅</span>
+<span>Консультация бесплатно</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px;">
+<span style="font-size: 1.5rem;">✅</span>
+<span>Помощь в выборе</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="footer">
+<div class="container">
+<div class="footer-grid">
+<div><h4>Каталог</h4><a class="footer-category" data-cat="Межкомнатные">Межкомнатные</a><a class="footer-category" data-cat="Входные">Входные</a></div>
+<div><h4>Клиентам</h4><a class="footer-nav" data-section="delivery">Доставка</a><a class="footer-nav" data-section="services">Гарантия</a></div>
+<div><h4>Контакты</h4><a href="tel:+74951234567">+7 (495) 123-45-67</a><a href="#" class="telegram-link">Telegram</a></div>
+</div>
+<div class="footer-bottom"><p>© 2025 Двери-Мастер. Все права защищены.</p></div>
+</div>
+</footer>
+</div>
+<!-- ==================== СТРАНИЦА ТОВАРА ==================== -->
+<div id="productDetailPage" class="product-detail-page">
+<div class="container">
+<div class="breadcrumbs">
+<a class="back-to-main">Главная</a> /
+<a class="back-to-main">Каталог</a> /
+<span id="breadcrumbCategory"></span> /
+<span id="breadcrumbTitle"></span>
+</div>
+<div class="product-detail-grid">
+<div class="product-gallery">
+<div class="main-image"><img src="" alt="" id="detailMainImg"></div>
+<div class="thumbnail-list" id="detailThumbnails"></div>
+</div>
+<div class="product-detail-info">
+<h1 class="product-detail-title" id="detailTitle"></h1>
+<div class="product-detail-sku" id="detailSku"></div>
+<div><span class="product-detail-current-price" id="detailCurrentPrice"></span><span class="product-detail-old-price" id="detailOldPrice" style="display:none;"></span></div>
+<div class="options-block">
+<div class="option-group"><label class="option-label">Размер полотна:</label><div class="size-options" id="detailSizeOptions"></div></div>
+<div class="option-group"><label class="option-label">Цвет/Отделка:</label><div class="color-options" id="detailColorOptions"></div></div>
+</div>
+<button class="btn btn-primary add-to-cart-btn" id="detailAddToCartBtn">Добавить в корзину</button>
+<div style="margin-top:24px; padding-top:24px; border-top:1px solid var(--color-gray-300); display:flex; gap:16px;"><span>✅ Гарантия 10 лет</span><span>🚚 Бесплатная доставка от 30 000 ₽</span></div>
+</div>
+</div>
+<div class="product-tabs">
+<div class="tab-buttons"><button class="tab-btn active" data-tab="description">Описание</button><button class="tab-btn" data-tab="specs">Характеристики</button></div>
+<div class="tab-content active" id="descriptionTab"><p id="detailDescription"></p></div>
+<div class="tab-content" id="specsTab"><table class="specs-table" id="detailSpecs"></table></div>
+</div>
+</div>
+</div>
+<!-- ==================== МОДАЛЬНЫЕ ОКНА ==================== -->
+<div id="cartModal" class="modal">
+<div class="modal-content">
+<span class="modal-close">&times;</span>
+<h3 style="margin-bottom:24px;">🛒 Корзина</h3>
+<div id="cartItemsList"></div>
+<div class="cart-summary" id="cartSummary"></div>
+<button class="btn btn-primary" style="width:100%; margin-top:20px;" id="checkoutBtn">Оформить заказ</button>
+</div>
+</div>
+<div id="searchModal" class="modal">
+<div class="modal-content">
+<span class="modal-close">&times;</span>
+<h3 style="margin-bottom:20px;">🔍 Поиск товаров</h3>
+<div class="search-input-wrapper"><input type="text" id="searchInput" placeholder="Введите название двери..."></div>
+<div class="search-results-list" id="searchResults"></div>
+</div>
+</div>
+<div id="accountModal" class="modal">
+<div class="modal-content">
+<span class="modal-close">&times;</span>
+<h3 style="margin-bottom:24px;">👤 Вход в личный кабинет</h3>
+<div id="authContainer"></div>
+</div>
+</div>
+<!-- 💬 ПЛАВАЮЩИЙ ЧАТ -->
+<div class="chat-widget">
+<div class="chat-window" id="chatWindow">
+<div class="chat-header">
+<div class="chat-avatar">👨‍💼</div>
+<div class="chat-header-info">
+<h5>Менеджер Алексей</h5>
+<p><span class="chat-status"></span>Онлайн</p>
+</div>
+</div>
+<div class="chat-body" id="chatBody">
+<div class="chat-message manager">
+<div class="message-bubble">Здравствуйте! Чем могу помочь вам с выбором двери?</div>
+<div class="message-time">Сейчас</div>
+</div>
+</div>
+<div class="chat-footer">
+<div class="chat-input-wrapper">
+<input type="text" class="chat-input" id="chatInput" placeholder="Введите сообщение...">
+<button class="chat-send-btn" id="chatSendBtn">➤</button>
+</div>
+</div>
+</div>
+<button class="chat-button" id="chatButton">
+<span class="chat-icon-open">💬</span>
+<span class="chat-icon-close">✕</span>
+</button>
+</div>
+<script>
+// ============================================
+// БАЗА ДАННЫХ ТОВАРОВ (14 карточек)
+// ============================================
+const products = [
+{ id: 1, title: "Классик", category: "Межкомнатные", material: "Массив сосны", price: 12500, image: "https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?w=400&h=400&fit=crop", description: "Элегантная классическая дверь из массива сосны с белой эмалью.", specs: { "Материал": "Массив сосны", "Покрытие": "Эмаль", "Толщина": "40 мм" } },
+{ id: 2, title: "Модерн", category: "Межкомнатные", material: "Экошпон", price: 8900, image: "https://images.unsplash.com/photo-1481277542470-605612bd2d61?w=400&h=400&fit=crop", description: "Современная дверь с покрытием экошпон.", specs: { "Материал": "Экошпон", "Покрытие": "Венге", "Толщина": "38 мм" } },
+{ id: 3, title: "Страж", category: "Входные", material: "Сталь", price: 32900, image: "https://images.unsplash.com/photo-1584621881560-2c8e9f3f4c6e?w=400&h=400&fit=crop", description: "Надежная входная дверь с усиленной конструкцией.", specs: { "Материал": "Сталь", "Толщина": "2 мм", "Замок": "Cisa" } },
+{ id: 4, title: "Премиум", category: "Входные", material: "Сталь+терморазрыв", price: 58500, image: "https://images.unsplash.com/photo-1595429638954-1a5c9d5a7a8e?w=400&h=400&fit=crop", description: "Премиальная входная дверь с терморазрывом.", specs: { "Материал": "Сталь", "Терморазрыв": "Да", "Толщина": "3 мм" } },
+{ id: 5, title: "Венеция", category: "Межкомнатные", material: "Массив дуба", price: 24900, image: "https://images.unsplash.com/photo-1506306465490-5f6b0e0b9f3e?w=400&h=400&fit=crop", description: "Изысканная дверь из массива дуба с патиной.", specs: { "Материал": "Массив дуба", "Покрытие": "Патина", "Толщина": "42 мм" } },
+{ id: 6, title: "Лофт", category: "Межкомнатные", material: "Металл+стекло", price: 18900, image: "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=400&h=400&fit=crop", description: "Стильная дверь в стиле лофт с металлическим каркасом.", specs: { "Материал": "Металл+стекло", "Стиль": "Лофт", "Толщина": "36 мм" } },
+{ id: 7, title: "Крепость", category: "Входные", material: "Сталь 3мм", price: 45900, image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400&h=400&fit=crop", description: "Усиленная входная дверь с тремя замками.", specs: { "Материал": "Сталь", "Замки": "3 шт", "Толщина": "3 мм" } },
+{ id: 8, title: "Офис Стандарт", category: "Офисные", material: "Ламинатин", price: 7500, image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=400&fit=crop", description: "Практичная дверь для офисных помещений.", specs: { "Материал": "Ламинатин", "Класс": "Стандарт", "Толщина": "36 мм" } },
+{ id: 9, title: "Огнестойкая", category: "Противопожарные", material: "Сталь+огнеупор", price: 52000, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop", description: "Противопожарная дверь с сертификатом EI60.", specs: { "Материал": "Сталь+огнеупор", "Сертификат": "EI60", "Толщина": "50 мм" } },
+{ id: 10, title: "Слайд", category: "Раздвижные", material: "Алюминий+стекло", price: 28900, image: "https://images.unsplash.com/photo-1502005229766-939cb4a5c8e6?w=400&h=400&fit=crop", description: "Раздвижная дверь-купе с алюминиевым профилем.", specs: { "Материал": "Алюминий+стекло", "Тип": "Купе", "Толщина": "35 мм" } },
+{ id: 11, title: "Хай-тек", category: "Межкомнатные", material: "Эмаль+стекло", price: 16900, image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?w=400&h=400&fit=crop", description: "Современная дверь с матовым стеклом.", specs: { "Материал": "Эмаль+стекло", "Стиль": "Хай-тек", "Толщина": "40 мм" } },
+{ id: 12, title: "Прованс", category: "Межкомнатные", material: "Массив ясеня", price: 21500, image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=400&h=400&fit=crop", description: "Дверь в стиле прованс с эффектом старения.", specs: { "Материал": "Массив ясеня", "Стиль": "Прованс", "Толщина": "40 мм" } },
+{ id: 13, title: "Бизнес", category: "Офисные", material: "Шпон", price: 11900, image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=400&h=400&fit=crop", description: "Солидная дверь для переговорных комнат.", specs: { "Материал": "Шпон", "Класс": "Бизнес", "Толщина": "40 мм" } },
+{ id: 14, title: "Панорама", category: "Стеклянные", material: "Закалённое стекло", price: 35900, image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=400&h=400&fit=crop", description: "Полностью стеклянная дверь с матовым покрытием.", specs: { "Материал": "Закалённое стекло", "Толщина": "10 мм", "Покрытие": "Мат" } }
+];
+const sizeOptions = [
+{ name: "600×2000 мм", priceMod: 0 },
+{ name: "700×2000 мм", priceMod: 500 },
+{ name: "800×2000 мм", priceMod: 1000 }
+];
+const colorOptions = [
+{ name: "Белый", priceMod: 0, colorCode: "#ffffff" },
+{ name: "Венге", priceMod: 0, colorCode: "#4a3728" },
+{ name: "Дуб сонома", priceMod: 800, colorCode: "#b87c4f" }
+];
+let cart = [];
+let currentProduct = null;
+let selectedSize = sizeOptions[0];
+let selectedColor = colorOptions[0];
+let currentFilter = "all";
+let isLoginMode = true;
+// ============================================
+// 💬 ЧАТ ФУНКЦИОНАЛ
+// ============================================
+function toggleChat() {
+const chatWindow = document.getElementById("chatWindow");
+const chatButton = document.getElementById("chatButton");
+chatWindow.classList.toggle("active");
+chatButton.classList.toggle("active");
+}
+function sendMessage() {
+const input = document.getElementById("chatInput");
+const message = input.value.trim();
+if (!message) return;
+const chatBody = document.getElementById("chatBody");
+const time = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+chatBody.innerHTML += `
+<div class="chat-message user">
+<div class="message-bubble">${message}</div>
+<div class="message-time">${time}</div>
+</div>
+`;
+input.value = "";
+chatBody.scrollTop = chatBody.scrollHeight;
+setTimeout(() => {
+chatBody.innerHTML += `
+<div class="chat-message manager">
+<div class="message-bubble">Спасибо за сообщение! Менеджер скоро ответит вам.</div>
+<div class="message-time">${time}</div>
+</div>
+`;
+chatBody.scrollTop = chatBody.scrollHeight;
+}, 1000);
+}
+// ============================================
+// ЛЕВАЯ ПАНЕЛЬ КАТАЛОГА
+// ============================================
+function toggleSidebar() {
+const sidebar = document.getElementById("leftSidebar");
+const overlay = document.getElementById("sidebarOverlay");
+const mainElements = document.querySelectorAll('.hero, .categories, .slider-section, .main-content, .services, .contacts, .footer');
+sidebar.classList.toggle("active");
+overlay.classList.toggle("active");
+mainElements.forEach(el => el.classList.toggle("with-sidebar"));
+}
+function closeSidebar() {
+const sidebar = document.getElementById("leftSidebar");
+const overlay = document.getElementById("sidebarOverlay");
+const mainElements = document.querySelectorAll('.hero, .categories, .slider-section, .main-content, .services, .contacts, .footer');
+sidebar.classList.remove("active");
+overlay.classList.remove("active");
+mainElements.forEach(el => el.classList.remove("with-sidebar"));
+}
+// ============================================
+// МОДАЛЬНЫЕ ОКНА
+// ============================================
+function openModal(modalId) {
+const modal = document.getElementById(modalId);
+if (modal) {
+modal.style.display = "block";
+document.body.style.overflow = "hidden";
+}
+}
+function closeModal(modalId) {
+const modal = document.getElementById(modalId);
+if (modal) {
+modal.style.display = "none";
+document.body.style.overflow = "auto";
+}
+}
+// ============================================
+// НАВИГАЦИЯ
+// ============================================
+function showMainPage() {
+document.getElementById("mainPage").style.display = "block";
+document.getElementById("productDetailPage").classList.remove("active");
+document.body.style.overflow = "auto";
+window.scrollTo({ top: 0, behavior: "smooth" });
+history.pushState({ page: "main" }, "", window.location.pathname);
+}
+function scrollToSection(sectionId) {
+if (document.getElementById("productDetailPage").classList.contains("active")) {
+showMainPage();
+setTimeout(() => {
+const element = document.getElementById(sectionId);
+if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
+}, 100);
+} else {
+const element = document.getElementById(sectionId);
+if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+}
+function openProductDetail(productId) {
+const product = products.find(p => p.id === productId);
+if (!product) return;
+currentProduct = product;
+selectedSize = sizeOptions[0];
+selectedColor = colorOptions[0];
+document.getElementById("breadcrumbCategory").textContent = product.category;
+document.getElementById("breadcrumbTitle").textContent = product.title;
+document.getElementById("detailTitle").textContent = product.title;
+document.getElementById("detailDescription").textContent = product.description;
+document.getElementById("detailMainImg").src = product.image;
+const specsTable = document.getElementById("detailSpecs");
+specsTable.innerHTML = Object.entries(product.specs).map(([k,v]) => `<tr><td>${k}</td><td>${v}</td> </tr>`).join("");
+document.getElementById("detailThumbnails").innerHTML = `<div class="thumbnail active"><img src="${product.image}"></div>`;
+document.getElementById("detailSizeOptions").innerHTML = sizeOptions.map((s, i) => `<button class="size-btn ${i===0?'active':''}" data-size-index="${i}">${s.name}</button>`).join("");
+document.getElementById("detailColorOptions").innerHTML = colorOptions.map((c, i) => `<button class="color-btn ${i===0?'active':''}" data-color-index="${i}"><span class="color-dot" style="background:${c.colorCode};"></span>${c.name}${c.priceMod>0?` (+${c.priceMod}₽)`:''}</button>`).join("");
+updateDetailPriceAndSku();
+document.querySelectorAll("#detailSizeOptions .size-btn").forEach(btn => {
+btn.onclick = () => {
+document.querySelectorAll("#detailSizeOptions .size-btn").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+selectedSize = sizeOptions[parseInt(btn.dataset.sizeIndex)];
+updateDetailPriceAndSku();
+};
+});
+document.querySelectorAll("#detailColorOptions .color-btn").forEach(btn => {
+btn.onclick = () => {
+document.querySelectorAll("#detailColorOptions .color-btn").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+selectedColor = colorOptions[parseInt(btn.dataset.colorIndex)];
+updateDetailPriceAndSku();
+};
+});
+document.getElementById("detailAddToCartBtn").onclick = () => {
+const totalPrice = currentProduct.price + selectedSize.priceMod + selectedColor.priceMod;
+const existingItem = cart.find(item => item.id === currentProduct.id && item.size === selectedSize.name && item.color === selectedColor.name);
+if (existingItem) {
+existingItem.quantity += 1;
+} else {
+cart.push({
+id: currentProduct.id,
+title: currentProduct.title,
+size: selectedSize.name,
+color: selectedColor.name,
+price: totalPrice,
+quantity: 1,
+image: currentProduct.image
+});
+}
+updateCartCount();
+showNotification(`${currentProduct.title} добавлен в корзину`);
+};
+document.querySelectorAll("#productDetailPage .tab-btn").forEach(btn => {
+btn.onclick = () => {
+document.querySelectorAll("#productDetailPage .tab-btn").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+document.querySelectorAll("#productDetailPage .tab-content").forEach(t=>t.classList.remove("active"));
+document.getElementById(btn.dataset.tab + "Tab").classList.add("active");
+};
+});
+document.getElementById("mainPage").style.display = "none";
+document.getElementById("productDetailPage").classList.add("active");
+window.scrollTo(0, 0);
+history.pushState({ page: "product", id: productId }, "", `?product=${productId}`);
+}
+function updateDetailPriceAndSku() {
+const total = currentProduct.price + selectedSize.priceMod + selectedColor.priceMod;
+document.getElementById("detailCurrentPrice").textContent = total.toLocaleString() + " ₽";
+if (selectedSize.priceMod > 0 || selectedColor.priceMod > 0) {
+document.getElementById("detailOldPrice").style.display = "inline";
+document.getElementById("detailOldPrice").textContent = currentProduct.price.toLocaleString() + " ₽";
+} else {
+document.getElementById("detailOldPrice").style.display = "none";
+}
+document.getElementById("detailSku").textContent = `Артикул: ${currentProduct.title.substring(0,2)}-${selectedSize.name.substring(0,2)}-${selectedColor.name.substring(0,2)}`;
+}
+// ============================================
+// КОРЗИНА
+// ============================================
+function updateCartCount() {
+const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+document.getElementById("cartCount").innerText = totalItems;
+localStorage.setItem("cart", JSON.stringify(cart));
+}
+function openCartModal() {
+const itemsList = document.getElementById("cartItemsList");
+const summaryDiv = document.getElementById("cartSummary");
+if (cart.length === 0) {
+itemsList.innerHTML = '<p style="text-align:center; padding:40px;">Корзина пуста</p>';
+summaryDiv.innerHTML = "";
+} else {
+itemsList.innerHTML = cart.map((item, idx) => `
+<div class="cart-item">
+<div class="cart-item-image"><img src="${item.image}"></div>
+<div class="cart-item-info">
+<div class="cart-item-title">${item.title}</div>
+<div class="cart-item-options">${item.size}, ${item.color}</div>
+<div class="cart-item-price">${item.price.toLocaleString()} ₽</div>
+</div>
+<div class="cart-item-quantity">
+<button class="quantity-btn" data-index="${idx}" data-delta="-1">−</button>
+<span>${item.quantity}</span>
+<button class="quantity-btn" data-index="${idx}" data-delta="1">+</button>
+</div>
+<button class="cart-item-remove" data-index="${idx}">🗑</button>
+</div>
+`).join("");
+document.querySelectorAll("#cartItemsList .quantity-btn").forEach(btn => {
+btn.onclick = () => {
+const idx = parseInt(btn.dataset.index);
+const delta = parseInt(btn.dataset.delta);
+updateQuantity(idx, delta);
+};
+});
+document.querySelectorAll("#cartItemsList .cart-item-remove").forEach(btn => {
+btn.onclick = () => {
+const idx = parseInt(btn.dataset.index);
+removeCartItem(idx);
+};
+});
+const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+summaryDiv.innerHTML = `
+<div class="cart-summary-row"><span>Товаров (${totalItems} шт.)</span><span>${totalPrice.toLocaleString()} ₽</span></div>
+<div class="cart-summary-total"><span>Итого к оплате</span><span>${totalPrice.toLocaleString()} ₽</span></div>
+`;
+}
+openModal("cartModal");
+}
+function updateQuantity(index, delta) {
+const newQuantity = cart[index].quantity + delta;
+if (newQuantity <= 0) {
+cart.splice(index, 1);
+} else {
+cart[index].quantity = newQuantity;
+}
+updateCartCount();
+openCartModal();
+}
+function removeCartItem(index) {
+cart.splice(index, 1);
+updateCartCount();
+openCartModal();
+}
+function checkout() {
+if(cart.length) {
+showNotification("Заказ оформлен! Менеджер свяжется с вами");
+cart = [];
+updateCartCount();
+closeModal("cartModal");
+}
+}
+// ============================================
+// АВТОРИЗАЦИЯ
+// ============================================
+function openAccountModal() {
+renderAuthForm();
+openModal("accountModal");
+}
+function renderAuthForm() {
+const container = document.getElementById("authContainer");
+if (isLoginMode) {
+container.innerHTML = `
+<form class="auth-form" id="loginForm">
+<input type="email" id="loginEmail" placeholder="Email" required>
+<input type="password" id="loginPassword" placeholder="Пароль" required>
+<button type="submit" class="btn btn-primary">Войти</button>
+<div class="auth-switch">Нет аккаунта? <a id="switchToRegister">Зарегистрироваться</a></div>
+</form>
+`;
+document.getElementById("loginForm").onsubmit = (e) => { e.preventDefault(); showNotification("Добро пожаловать!"); closeModal("accountModal"); };
+document.getElementById("switchToRegister").onclick = () => { isLoginMode = false; renderAuthForm(); };
+} else {
+container.innerHTML = `
+<form class="auth-form" id="registerForm">
+<input type="text" id="regName" placeholder="Имя" required>
+<input type="email" id="regEmail" placeholder="Email" required>
+<input type="password" id="regPassword" placeholder="Пароль (мин. 6 символов)" required>
+<button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+<div class="auth-switch">Уже есть аккаунт? <a id="switchToLogin">Войти</a></div>
+</form>
+`;
+document.getElementById("registerForm").onsubmit = (e) => { e.preventDefault(); showNotification("Регистрация успешна!"); isLoginMode = true; renderAuthForm(); };
+document.getElementById("switchToLogin").onclick = () => { isLoginMode = true; renderAuthForm(); };
+}
+}
+// ============================================
+// ПОИСК
+// ============================================
+function openSearchModal() {
+openModal("searchModal");
+setTimeout(() => document.getElementById("searchInput").focus(), 100);
+}
+document.getElementById("searchInput")?.addEventListener("input", (e) => {
+const query = e.target.value.toLowerCase();
+const results = products.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+const resultsDiv = document.getElementById("searchResults");
+if (results.length === 0) {
+resultsDiv.innerHTML = '<p style="text-align:center; padding:40px;">Ничего не найдено</p>';
+} else {
+resultsDiv.innerHTML = results.map(p => `
+<div class="search-result-item" data-id="${p.id}">
+<div class="search-result-img"><img src="${p.image}"></div>
+<div class="search-result-info"><div class="search-result-title">${p.title}</div><div>${p.price.toLocaleString()} ₽</div></div>
+</div>
+`).join("");
+document.querySelectorAll(".search-result-item").forEach(el => {
+el.onclick = () => {
+const id = parseInt(el.dataset.id);
+openProductDetail(id);
+closeModal("searchModal");
+};
+});
+}
+});
+// ============================================
+// ОТРИСОВКА КОМПОНЕНТОВ
+// ============================================
+function renderCategories() {
+const cats = [{name:"Межкомнатные",icon:"🏠"},{name:"Входные",icon:"🔒"},{name:"Офисные",icon:"🏢"},{name:"Противопожарные",icon:"🔥"},{name:"Раздвижные",icon:"↔️"},{name:"Стеклянные",icon:"🪟"}];
+document.getElementById("categoriesGrid").innerHTML = cats.map(c => `
+<div class="category-card" data-cat="${c.name}">
+<div class="category-image"><div class="img-note">📸 [ФОТО: ${c.name}]</div></div>
+<h3>${c.icon} ${c.name}</h3>
+<p>От ${c.name === "Межкомнатные" ? "5 900" : c.name === "Входные" ? "24 900" : c.name === "Офисные" ? "6 500" : c.name === "Противопожарные" ? "45 000" : c.name === "Раздвижные" ? "22 000" : "28 000"} ₽</p>
+</div>
+`).join("");
+document.querySelectorAll(".category-card").forEach(card => {
+card.onclick = () => filterByCategory(card.dataset.cat);
+});
+}
+function renderSlider() {
+document.getElementById("sliderTrack").innerHTML = products.slice(0, 6).map(p => `
+<div class="product-card" data-id="${p.id}">
+<div class="product-image"><div class="img-note">📸 [${p.title}]</div></div>
+<div class="product-info">
+<div class="product-title">${p.title}</div>
+<div class="product-material">${p.material}</div>
+<div class="product-price">${p.price.toLocaleString()} ₽</div>
+<button class="btn btn-primary" style="width:100%; margin-top:12px;" data-id="${p.id}">В корзину</button>
+</div>
+</div>
+`).join("");
+document.querySelectorAll(".product-card").forEach(card => {
+card.onclick = (e) => {
+if(e.target.tagName === 'BUTTON') {
+e.stopPropagation();
+addToCartSimple(parseInt(e.target.dataset.id));
+} else {
+openProductDetail(parseInt(card.dataset.id));
+}
+};
+});
+}
+function addToCartSimple(productId) {
+const product = products.find(p => p.id === productId);
+const existing = cart.find(item => item.id === productId && !item.size);
+if(existing) existing.quantity += 1;
+else cart.push({ ...product, quantity: 1, size: "стандарт", color: "белый", image: product.image });
+updateCartCount();
+showNotification(`${product.title} добавлен в корзину`);
+}
+function renderFilters() {
+const filters = ["Все двери", "Межкомнатные", "Входные", "Офисные", "Противопожарные", "Раздвижные", "Стеклянные"];
+document.getElementById("filtersContainer").innerHTML = filters.map(f => `<div class="filter-chip ${f==="Все двери"?"active":""}" data-filter="${f}">${f}</div>`).join("");
+document.querySelectorAll(".filter-chip").forEach(chip => {
+chip.onclick = () => {
+document.querySelectorAll(".filter-chip").forEach(c=>c.classList.remove("active"));
+chip.classList.add("active");
+currentFilter = chip.dataset.filter === "Все двери" ? "all" : chip.dataset.filter;
+renderProducts(currentFilter);
+};
+});
+}
+function renderProducts(category) {
+const filtered = category === "all" ? products : products.filter(p => p.category === category);
+document.getElementById("productsGrid").innerHTML = filtered.map(p => `
+<div class="product-card" data-id="${p.id}">
+<div class="product-image"><div class="img-note">📸 [${p.title}]</div></div>
+<div class="product-info">
+<div class="product-title">${p.title}</div>
+<div class="product-material">${p.material}</div>
+<div class="product-price">${p.price.toLocaleString()} ₽</div>
+<button class="btn btn-primary" style="width:100%; margin-top:12px;" data-id="${p.id}">В корзину</button>
+</div>
+</div>
+`).join("");
+document.querySelectorAll("#productsGrid .product-card").forEach(card => {
+card.onclick = (e) => {
+if(e.target.tagName === 'BUTTON') {
+e.stopPropagation();
+addToCartSimple(parseInt(e.target.dataset.id));
+} else {
+openProductDetail(parseInt(card.dataset.id));
+}
+};
+});
+}
+// ============================================
+// ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+// ============================================
+function filterByCategory(cat) {
+if (document.getElementById("productDetailPage").classList.contains("active")) {
+showMainPage();
+setTimeout(() => {
+renderProducts(cat);
+document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+const targetChip = Array.from(document.querySelectorAll(".filter-chip")).find(c => c.dataset.filter === cat || (cat === "all" && c.dataset.filter === "Все двери"));
+if (targetChip) targetChip.classList.add("active");
+document.querySelectorAll(".sidebar-category").forEach(c => c.classList.remove("active"));
+const targetSidebar = Array.from(document.querySelectorAll(".sidebar-category")).find(c => c.dataset.category === cat);
+if (targetSidebar) targetSidebar.classList.add("active");
+document.getElementById("productsGrid").scrollIntoView({ behavior: "smooth" });
+}, 100);
+} else {
+renderProducts(cat);
+document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+const targetChip = Array.from(document.querySelectorAll(".filter-chip")).find(c => c.dataset.filter === cat || (cat === "all" && c.dataset.filter === "Все двери"));
+if (targetChip) targetChip.classList.add("active");
+document.querySelectorAll(".sidebar-category").forEach(c => c.classList.remove("active"));
+const targetSidebar = Array.from(document.querySelectorAll(".sidebar-category")).find(c => c.dataset.category === cat);
+if (targetSidebar) targetSidebar.classList.add("active");
+document.getElementById("productsGrid").scrollIntoView({ behavior: "smooth" });
+}
+closeSidebar();
+}
+function scrollToCatalog() { document.getElementById("productsGrid").scrollIntoView({ behavior: "smooth", block: "start" }); }
+function showNotification(msg) {
+const n = document.createElement("div");
+n.textContent = msg;
+n.style.cssText = `position:fixed; bottom:20px; right:20px; background:var(--color-primary); color:white; padding:12px 24px; border-radius:60px; z-index:10000; animation:slideUp 0.3s;`;
+document.body.appendChild(n);
+setTimeout(()=>n.remove(),3000);
+}
+function handleFormSubmit(e) { e.preventDefault(); showNotification("Заявка отправлена!"); e.target.reset(); }
+function initSlider() {
+const track = document.getElementById("sliderTrack");
+document.getElementById("prevSlide")?.addEventListener("click", () => track.scrollBy({ left: -320, behavior: "smooth" }));
+document.getElementById("nextSlide")?.addEventListener("click", () => track.scrollBy({ left: 320, behavior: "smooth" }));
+}
+// ============================================
+// ИНИЦИАЛИЗАЦИЯ СОБЫТИЙ
+// ============================================
+document.addEventListener("DOMContentLoaded", () => {
+renderCategories(); renderSlider(); renderFilters(); renderProducts("all"); initSlider();
+const savedCart = localStorage.getItem("cart");
+if(savedCart) cart = JSON.parse(savedCart);
+updateCartCount();
+const telegramUrl = "https://t.me/dveri_master";
+document.querySelectorAll(".telegram-link").forEach(l => l.href = telegramUrl);
+document.getElementById("accountBtn").onclick = () => openAccountModal();
+document.getElementById("searchBtn").onclick = () => openSearchModal();
+document.getElementById("cartBtn").onclick = () => openCartModal();
+document.querySelectorAll(".modal-close").forEach(closeBtn => {
+closeBtn.onclick = () => {
+const modal = closeBtn.closest(".modal");
+if(modal) closeModal(modal.id);
+};
+});
+window.onclick = (e) => {
+if(e.target.classList?.contains("modal")) {
+closeModal(e.target.id);
+}
+};
+document.getElementById("logoLink").onclick = () => showMainPage();
+document.getElementById("catalogScrollBtn").onclick = () => scrollToCatalog();
+document.getElementById("freeMeasureBtn").onclick = () => showNotification("Заявка на бесплатный замер принята");
+document.getElementById("checkoutBtn").onclick = () => checkout();
+document.getElementById("contactForm")?.addEventListener("submit", handleFormSubmit);
+document.querySelectorAll(".back-to-main").forEach(el => {
+el.onclick = () => showMainPage();
+});
+document.querySelectorAll(".nav-links a").forEach(link => {
+link.onclick = () => scrollToSection(link.dataset.section);
+});
+document.querySelectorAll(".footer-nav").forEach(link => {
+link.onclick = () => scrollToSection(link.dataset.section);
+});
+document.querySelectorAll(".footer-category").forEach(link => {
+link.onclick = () => filterByCategory(link.dataset.cat);
+});
+document.getElementById("catalogToggleBtn").onclick = () => toggleSidebar();
+document.getElementById("sidebarClose").onclick = () => closeSidebar();
+document.getElementById("sidebarOverlay").onclick = () => closeSidebar();
+document.querySelectorAll(".sidebar-category").forEach(item => {
+item.onclick = () => {
+document.querySelectorAll(".sidebar-category").forEach(c => c.classList.remove("active"));
+item.classList.add("active");
+filterByCategory(item.dataset.category);
+};
+});
+window.addEventListener("popstate", () => {
+if(document.getElementById("productDetailPage").classList.contains("active")) showMainPage();
+});
+document.getElementById("chatButton").onclick = () => toggleChat();
+document.getElementById("chatSendBtn").onclick = () => sendMessage();
+document.getElementById("chatInput").addEventListener("keypress", (e) => {
+if(e.key === "Enter") sendMessage();
+});
+});
+</script>
+</body>
+</html>
