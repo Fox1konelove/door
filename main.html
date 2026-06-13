@@ -216,7 +216,7 @@ padding: 24px 16px;
 overflow-y: auto;
 z-index: 999;
 transform: translateX(-100%);
-transition: var(--transition);
+transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .left-sidebar.active {
 transform: translateX(0);
@@ -281,37 +281,64 @@ display: none;
 display: block;
 }
 /* ============================================
-ГЛАВНЫЙ ЭКРАН (HERO)
+ГЛАВНЫЙ ЭКРАН (HERO) И ОСТАЛЬНЫЕ СЕКЦИИ
 ============================================ */
 .hero {
 padding: 80px 0;
 background: linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-white) 100%);
-margin-left: 0;
-transition: var(--transition);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+width: 100%;
 }
-.hero.with-sidebar {
-margin-left: 280px;
+
+/* Адаптация контента при открытой панели */
+body.sidebar-open .hero,
+body.sidebar-open .categories,
+body.sidebar-open .slider-section,
+body.sidebar-open .main-content,
+body.sidebar-open .services,
+body.sidebar-open .contacts,
+body.sidebar-open .footer {
+padding-left: 280px;
+padding-right: 0;
 }
+
+@media (max-width: 992px) {
+body.sidebar-open .hero,
+body.sidebar-open .categories,
+body.sidebar-open .slider-section,
+body.sidebar-open .main-content,
+body.sidebar-open .services,
+body.sidebar-open .contacts,
+body.sidebar-open .footer {
+padding-left: 0;
+}
+}
+
 .hero-grid {
 display: grid;
 grid-template-columns: 1fr 1fr;
 gap: 60px;
 align-items: center;
+max-width: 100%;
 }
+
 .hero-content h1 {
 font-size: 3.2rem;
 font-weight: 700;
 line-height: 1.2;
 margin-bottom: 24px;
 }
+
 .hero-content h1 span {
 color: var(--color-accent);
 }
+
 .hero-content p {
 font-size: 1.125rem;
 color: var(--color-text-light);
 margin-bottom: 32px;
 }
+
 .hero-image {
 background: linear-gradient(135deg, var(--color-gray-300) 0%, #d1cdc4 100%);
 border-radius: var(--border-radius-lg);
@@ -319,7 +346,9 @@ height: 460px;
 display: flex;
 align-items: center;
 justify-content: center;
+width: 100%;
 }
+
 .image-placeholder {
 background: rgba(0, 0, 0, 0.6);
 color: white;
@@ -327,23 +356,24 @@ padding: 12px 24px;
 border-radius: 60px;
 font-size: 0.9rem;
 }
+
 /* ============================================
 КАТЕГОРИИ
 ============================================ */
 .categories {
 padding: 80px 0;
 background: var(--color-white);
-margin-left: 0;
-transition: var(--transition);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+width: 100%;
 }
-.categories.with-sidebar {
-margin-left: 280px;
-}
+
 .categories-grid {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 gap: 32px;
+width: 100%;
 }
+
 .category-card {
 background: var(--color-gray-100);
 border-radius: var(--border-radius-md);
@@ -351,10 +381,12 @@ overflow: hidden;
 cursor: pointer;
 transition: var(--transition);
 }
+
 .category-card:hover {
 transform: translateY(-8px);
 box-shadow: var(--shadow-md);
 }
+
 .category-image {
 height: 260px;
 background: linear-gradient(135deg, #e0dbd2 0%, #ccc6bc 100%);
@@ -362,6 +394,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 }
+
 .img-note {
 background: rgba(0, 0, 0, 0.7);
 color: white;
@@ -369,47 +402,53 @@ padding: 8px 16px;
 border-radius: 40px;
 font-size: 0.85rem;
 }
+
 .category-card h3 {
 font-size: 1.5rem;
 font-weight: 600;
 margin: 24px 0 12px;
 text-align: center;
 }
+
 .category-card p {
 text-align: center;
 color: var(--color-text-light);
 padding-bottom: 24px;
 }
+
 /* ============================================
 СЛАЙДЕР
 ============================================ */
 .slider-section {
 padding: 80px 0;
 background: var(--color-gray-100);
-margin-left: 0;
-transition: var(--transition);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+width: 100%;
 }
-.slider-section.with-sidebar {
-margin-left: 280px;
-}
+
 .slider-track {
 display: flex;
 gap: 28px;
 overflow-x: auto;
 scroll-behavior: smooth;
 padding: 8px 4px 24px;
+width: 100%;
 }
+
 .slider-track::-webkit-scrollbar {
 height: 6px;
 }
+
 .slider-track::-webkit-scrollbar-track {
 background: var(--color-gray-300);
 border-radius: 10px;
 }
+
 .slider-track::-webkit-scrollbar-thumb {
 background: var(--color-primary);
 border-radius: 10px;
 }
+
 /* ============================================
 КАРТОЧКИ ТОВАРОВ - ЕДИНЫЙ СТИЛЬ
 ============================================ */
@@ -422,10 +461,12 @@ cursor: pointer;
 box-shadow: var(--shadow-sm);
 transition: var(--transition);
 }
+
 .product-card:hover {
 transform: translateY(-6px);
 box-shadow: var(--shadow-md);
 }
+
 .product-image {
 height: 240px;
 background: linear-gradient(135deg, #eae7e2 0%, #ddd8d0 100%);
@@ -433,30 +474,36 @@ display: flex;
 align-items: center;
 justify-content: center;
 }
+
 .product-info {
 padding: 20px;
 }
+
 .product-title {
 font-size: 1.1rem;
 font-weight: 600;
 margin-bottom: 8px;
 }
+
 .product-material {
 font-size: 0.85rem;
 color: var(--color-text-light);
 margin-bottom: 12px;
 }
+
 .product-price {
 font-size: 1.3rem;
 font-weight: 700;
 color: var(--color-primary);
 }
+
 .slider-controls {
 display: flex;
 justify-content: center;
 gap: 16px;
 margin-top: 32px;
 }
+
 .slider-arrow {
 width: 48px;
 height: 48px;
@@ -466,20 +513,20 @@ border: 1px solid var(--color-gray-300);
 cursor: pointer;
 font-size: 1.2rem;
 }
+
 .slider-arrow:hover {
 background: var(--color-primary);
 color: white;
 }
+
 /* ============================================
 ФИЛЬТРЫ И КАТАЛОГ
 ============================================ */
 .main-content {
-margin-left: 0;
-transition: var(--transition);
+transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+width: 100%;
 }
-.main-content.with-sidebar {
-margin-left: 280px;
-}
+
 .filters {
 display: flex;
 justify-content: center;
@@ -487,6 +534,7 @@ gap: 12px;
 flex-wrap: wrap;
 margin: 40px 0 48px;
 }
+
 .filter-chip {
 padding: 10px 28px;
 background: var(--color-white);
@@ -496,19 +544,23 @@ cursor: pointer;
 transition: var(--transition);
 font-weight: 500;
 }
+
 .filter-chip:hover {
 border-color: var(--color-primary);
 color: var(--color-primary);
 }
+
 .filter-chip.active {
 background: var(--color-primary);
 color: white;
 }
+
 .products-grid {
 display: grid;
 grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
 gap: 32px;
 margin-bottom: 80px;
+width: 100%;
 }
 /* ============================================
 🌟 УСЛУГИ - ПРЕМИУМ ДИЗАЙН
@@ -1314,6 +1366,148 @@ right: 20px;
 width: 100%;
 max-width: 300px;
 }
+
+/* ============================================
+ГЛОБАЛЬНАЯ АДАПТАЦИЯ ДЛЯ ВСЕХ ЭЛЕМЕНТОВ
+============================================ */
+.container {
+max-width: 1400px;
+margin: 0 auto;
+padding: 0 32px;
+width: 100%;
+box-sizing: border-box;
+}
+
+/* Фикс для полноэкранного режима */
+@media (min-width: 1400px) {
+.container {
+max-width: 1400px;
+}
+}
+
+/* Предотвращение появления горизонтального скролла */
+html, body {
+overflow-x: hidden;
+width: 100%;
+position: relative;
+}
+
+/* Убираем margin-left у элементов при открытой панели - используем body класс */
+body.sidebar-open {
+overflow-x: hidden;
+}
+
+/* Адаптация для планшетов */
+@media (max-width: 992px) {
+.hero-grid, .product-detail-grid, .contacts-grid {
+grid-template-columns: 1fr;
+gap: 40px;
+}
+
+.navbar {
+flex-wrap: wrap;
+height: auto;
+gap: 16px;
+padding: 16px 0;
+}
+
+.nav-links {
+order: 3;
+width: 100%;
+justify-content: center;
+flex-wrap: wrap;
+}
+
+.left-sidebar {
+width: 260px;
+}
+
+/* На мобильных и планшетах отключаем отступ при открытой панели */
+body.sidebar-open .hero,
+body.sidebar-open .categories,
+body.sidebar-open .slider-section,
+body.sidebar-open .main-content,
+body.sidebar-open .services,
+body.sidebar-open .contacts,
+body.sidebar-open .footer {
+padding-left: 0 !important;
+}
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 768px) {
+.container {
+padding: 0 20px;
+}
+
+.section-title {
+font-size: 2rem;
+}
+
+.chat-window {
+width: 300px;
+right: -50px;
+}
+
+.chat-widget {
+bottom: 20px;
+right: 20px;
+}
+
+.left-sidebar {
+width: 100%;
+max-width: 300px;
+}
+}
+
+/* Исправление для отображения карточек */
+.hero, .categories, .slider-section, .main-content, .services, .contacts, .footer {
+transition: margin-left 0.3s ease;
+width: 100%;
+}
+
+.products-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+gap: 32px;
+margin-bottom: 80px;
+width: 100%;
+}
+
+/* Гарантируем, что карточки видны */
+.product-card {
+display: block;
+visibility: visible;
+opacity: 1;
+}
+
+/* При открытой боковой панели на десктопе */
+@media (min-width: 993px) {
+body.sidebar-open .hero,
+body.sidebar-open .categories,
+body.sidebar-open .slider-section,
+body.sidebar-open .main-content,
+body.sidebar-open .services,
+body.sidebar-open .contacts,
+body.sidebar-open .footer {
+margin-left: 280px;
+width: calc(100% - 280px);
+}
+}
+
+/* На планшетах и мобильных отключаем сдвиг */
+@media (max-width: 992px) {
+body.sidebar-open .hero,
+body.sidebar-open .categories,
+body.sidebar-open .slider-section,
+body.sidebar-open .main-content,
+body.sidebar-open .services,
+body.sidebar-open .contacts,
+body.sidebar-open .footer {
+margin-left: 0;
+width: 100%;
+}
+}
 }
 </style>
 </head>
@@ -1717,18 +1911,40 @@ chatBody.scrollTop = chatBody.scrollHeight;
 function toggleSidebar() {
 const sidebar = document.getElementById("leftSidebar");
 const overlay = document.getElementById("sidebarOverlay");
-const mainElements = document.querySelectorAll('.hero, .categories, .slider-section, .main-content, .services, .contacts, .footer');
+const body = document.body;
+
 sidebar.classList.toggle("active");
 overlay.classList.toggle("active");
-mainElements.forEach(el => el.classList.toggle("with-sidebar"));
+
+if (sidebar.classList.contains("active")) {
+body.classList.add("sidebar-open");
+// Сдвигаем основной контент
+document.querySelectorAll('.hero, .categories, .slider-section, .main-content, .services, .contacts, .footer').forEach(el => {
+el.style.transition = 'margin-left 0.3s ease';
+el.style.marginLeft = '280px';
+});
+} else {
+body.classList.remove("sidebar-open");
+// Возвращаем основной контент на место
+document.querySelectorAll('.hero, .categories, .slider-section, .main-content, .services, .contacts, .footer').forEach(el => {
+el.style.marginLeft = '0';
+});
 }
+}
+
 function closeSidebar() {
 const sidebar = document.getElementById("leftSidebar");
 const overlay = document.getElementById("sidebarOverlay");
-const mainElements = document.querySelectorAll('.hero, .categories, .slider-section, .main-content, .services, .contacts, .footer');
+const body = document.body;
+
 sidebar.classList.remove("active");
 overlay.classList.remove("active");
-mainElements.forEach(el => el.classList.remove("with-sidebar"));
+body.classList.remove("sidebar-open");
+
+// Возвращаем основной контент на место
+document.querySelectorAll('.hero, .categories, .slider-section, .main-content, .services, .contacts, .footer').forEach(el => {
+el.style.marginLeft = '0';
+});
 }
 // ============================================
 // МОДАЛЬНЫЕ ОКНА
@@ -2045,7 +2261,10 @@ renderProducts(currentFilter);
 }
 function renderProducts(category) {
 const filtered = category === "all" ? products : products.filter(p => p.category === category);
-document.getElementById("productsGrid").innerHTML = filtered.map(p => `
+const productsGrid = document.getElementById("productsGrid");
+if (!productsGrid) return;
+
+productsGrid.innerHTML = filtered.map(p => `
 <div class="product-card" data-id="${p.id}">
 <div class="product-image"><div class="img-note">📸 [${p.title}]</div></div>
 <div class="product-info">
@@ -2056,6 +2275,8 @@ document.getElementById("productsGrid").innerHTML = filtered.map(p => `
 </div>
 </div>
 `).join("");
+
+// Привязываем события
 document.querySelectorAll("#productsGrid .product-card").forEach(card => {
 card.onclick = (e) => {
 if(e.target.tagName === 'BUTTON') {
