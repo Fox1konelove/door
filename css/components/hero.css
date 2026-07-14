@@ -1,0 +1,58 @@
+/* ============================================
+   ГЛАВНЫЙ ЭКРАН (HERO)
+   ============================================ */
+.hero {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--color-gray-100) 0%, var(--color-white) 100%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    max-width: 100%;
+}
+
+.hero-content h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.hero-content h1 span {
+    color: var(--color-accent);
+}
+
+.hero-content p {
+    font-size: 1.125rem;
+    color: var(--color-text-light);
+    margin-bottom: 32px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.hero-image {
+    background: linear-gradient(135deg, var(--color-gray-300) 0%, #d1cdc4 100%);
+    border-radius: var(--border-radius-lg);
+    height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.image-placeholder {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 60px;
+    font-size: 0.9rem;
+}
