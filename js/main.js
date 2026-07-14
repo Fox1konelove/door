@@ -15,7 +15,7 @@ import { showMainPage } from './modules/productDetail.js';
 import { CONFIG } from './config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Инициализация корзины (загрузка из localStorage)
+    // 1. Инициализация корзины
     initCart();
 
     // 2. Рендеринг компонентов
@@ -55,14 +55,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. Применяем конфиг (контакты)
+    // 7. Применяем конфиг
     applyConfig();
 });
 
 function applyConfig() {
     const { company } = CONFIG;
 
-    // Обновляем телефоны
     document.querySelectorAll('[data-phone]').forEach(el => {
         el.textContent = company.phone;
         if (el.tagName === 'A') {
@@ -70,7 +69,6 @@ function applyConfig() {
         }
     });
 
-    // Обновляем email
     document.querySelectorAll('[data-email]').forEach(el => {
         el.textContent = company.email;
         if (el.tagName === 'A') {
@@ -78,7 +76,6 @@ function applyConfig() {
         }
     });
 
-    // Обновляем Telegram
     document.querySelectorAll('.telegram-link').forEach(el => {
         el.href = company.telegram;
         el.textContent = company.telegramName;

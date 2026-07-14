@@ -5,7 +5,6 @@ export function initSidebar() {
     const toggleBtn = document.getElementById('catalogToggleBtn');
     const closeBtn = document.getElementById('sidebarClose');
     const overlay = document.getElementById('sidebarOverlay');
-    const sidebar = document.getElementById('leftSidebar');
 
     if (toggleBtn) {
         toggleBtn.addEventListener('click', toggleSidebar);
@@ -24,7 +23,22 @@ export function initSidebar() {
         item.addEventListener('click', () => {
             document.querySelectorAll('.sidebar-category').forEach(c => c.classList.remove('active'));
             item.classList.add('active');
-            filterByCategory(item.dataset.category);
+
+            const category = item.dataset.category;
+            filterByCategory(category);
+
+            // Синхронизируем с шапкой
+            document.querySelectorAll('.nav-category').forEach(link => {
+                const isActive = link.dataset.section === category || (category === 'all' && link.dataset.section === 'all');
+                link.classList.toggle('active', isActive);
+            });
+
+            // Прокручиваем к каталогу
+            setTimeout(() => {
+                const grid = document.getElementById('productsGrid');
+                if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+
             closeSidebar();
         });
     });

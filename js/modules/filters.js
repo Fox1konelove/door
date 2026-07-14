@@ -25,6 +25,9 @@ export function initFilters() {
 
         currentFilter = chip.dataset.filter === 'Все двери' ? 'all' : chip.dataset.filter;
         renderProducts(currentFilter);
+
+        // Синхронизируем с шапкой
+        syncNavWithFilter(currentFilter);
     });
 }
 
@@ -38,6 +41,9 @@ export function filterByCategory(category) {
     });
 
     renderProducts(currentFilter);
+
+    // Синхронизируем с шапкой
+    syncNavWithFilter(currentFilter);
 }
 
 export function getCurrentFilter() {
@@ -48,4 +54,12 @@ export function getFilteredProducts() {
     return currentFilter === 'all'
         ? products
         : products.filter(p => p.category === currentFilter);
+}
+
+// Синхронизация активной категории в шапке
+function syncNavWithFilter(filter) {
+    document.querySelectorAll('.nav-category').forEach(link => {
+        const isActive = link.dataset.section === filter || (filter === 'all' && link.dataset.section === 'all');
+        link.classList.toggle('active', isActive);
+    });
 }
