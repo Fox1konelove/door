@@ -1,5 +1,5 @@
 /* ============================================
-   ШАПКА САЙТА
+   ШАПКА САЙТА - ОБНОВЛЕННАЯ
    ============================================ */
 .top-bar {
     background: var(--color-primary-dark);
@@ -37,12 +37,14 @@
     justify-content: space-between;
     align-items: center;
     height: 80px;
+    gap: 16px;
 }
 
 .logo-area {
     display: flex;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
+    flex-shrink: 0;
 }
 
 .logo {
@@ -51,64 +53,70 @@
     text-decoration: none;
     color: var(--color-primary);
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .logo span {
     color: var(--color-accent);
 }
 
+/* ===== КАТЕГОРИИ В ШАПКЕ ===== */
 .nav-links {
     display: flex;
-    gap: 32px;
+    gap: 8px;
     align-items: center;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: center;
 }
 
-.nav-links a {
+.nav-category {
     text-decoration: none;
     color: var(--color-text-dark);
     font-weight: 500;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 60px;
     transition: var(--transition);
     cursor: pointer;
-    position: relative;
+    white-space: nowrap;
+    border: 1px solid transparent;
 }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--color-accent);
-    transition: var(--transition);
+.nav-category:hover {
+    color: var(--color-primary);
+    background: var(--color-gray-100);
 }
 
-.nav-links a:hover {
-    color: var(--color-accent);
+.nav-category.active {
+    color: var(--color-white);
+    background: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
-.nav-links a:hover::after {
-    width: 100%;
+.nav-category.active:hover {
+    background: var(--color-primary-dark);
 }
 
 .header-actions {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .icon-btn {
     background: transparent;
     border: none;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     cursor: pointer;
     padding: 8px;
     border-radius: 50%;
     transition: var(--transition);
     color: var(--color-text-dark);
     position: relative;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -116,6 +124,7 @@
 
 .icon-btn:hover {
     background: var(--color-gray-100);
+    color: var(--color-primary);
 }
 
 .cart-badge {
@@ -124,7 +133,7 @@
     right: -4px;
     background: var(--color-accent);
     color: white;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 600;
     width: 18px;
     height: 18px;
@@ -134,11 +143,11 @@
     justify-content: center;
 }
 
-/* Кнопка открытия каталога */
+/* Кнопка открытия каталога (осталась в шапке) */
 .catalog-toggle-btn {
     background: var(--color-primary);
     color: white;
-    padding: 10px 20px;
+    padding: 8px 16px;
     border-radius: 60px;
     border: none;
     cursor: pointer;
@@ -146,10 +155,59 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     transition: var(--transition);
+    white-space: nowrap;
 }
 
 .catalog-toggle-btn:hover {
     background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== АДАПТАЦИЯ ===== */
+@media (max-width: 992px) {
+    .navbar {
+        flex-wrap: wrap;
+        height: auto;
+        gap: 12px;
+        padding: 12px 0;
+    }
+
+    .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .nav-category {
+        font-size: 0.75rem;
+        padding: 4px 10px;
+    }
+
+    .logo-area {
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-category {
+        font-size: 0.7rem;
+        padding: 3px 8px;
+    }
+
+    .catalog-toggle-btn {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+
+    .logo {
+        font-size: 1.1rem;
+    }
 }
