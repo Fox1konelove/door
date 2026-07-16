@@ -163,12 +163,6 @@
             </div>
         </section>
 
-        <!-- КАТАЛОГ С ФИЛЬТРАМИ -->
-        <div class="container main-content">
-            <div class="filters" id="filtersContainer"></div>
-            <div class="products-grid" id="productsGrid"></div>
-        </div>
-
         <!-- УСЛУГИ -->
         <section id="services" class="services">
             <div class="container">
@@ -315,54 +309,6 @@
                 </div>
             </div>
         </footer>
-    </div>
-
-    <!-- ==================== СТРАНИЦА ТОВАРА ==================== -->
-    <div id="productDetailPage" class="product-detail-page">
-        <div class="container">
-            <div class="breadcrumbs">
-                <a class="back-to-main">Главная</a> /
-                <a class="back-to-main">Каталог</a> /
-                <span id="breadcrumbCategory"></span> /
-                <span id="breadcrumbTitle"></span>
-            </div>
-            <div class="product-detail-grid">
-                <div class="product-gallery">
-                    <div class="main-image"><img src="" alt="" id="detailMainImg"></div>
-                    <div class="thumbnail-list" id="detailThumbnails"></div>
-                </div>
-                <div class="product-detail-info">
-                    <h1 class="product-detail-title" id="detailTitle"></h1>
-                    <div class="product-detail-sku" id="detailSku"></div>
-                    <div>
-                        <span class="product-detail-current-price" id="detailCurrentPrice"></span>
-                        <span class="product-detail-old-price" id="detailOldPrice" style="display:none;"></span>
-                    </div>
-                    <div class="option-group">
-                        <label class="option-label">Размер полотна:</label>
-                        <div class="size-options" id="detailSizeOptions"></div>
-                    </div>
-                    <div class="option-group">
-                        <label class="option-label">Цвет/Отделка:</label>
-                        <div class="color-options" id="detailColorOptions"></div>
-                    </div>
-                    <button class="btn btn-primary add-to-cart-btn" id="detailAddToCartBtn">Добавить в корзину</button>
-                    <div style="margin-top:24px; padding-top:24px; border-top:1px solid var(--color-gray-300); display:flex; gap:16px; flex-wrap:wrap;">
-                        <span>✅ Гарантия 10 лет</span>
-                        <span>🚚 Бесплатная доставка от 30 000 ₽</span>
-                    </div>
-                </div>
-            </div>
-            <!-- ВКЛАДКИ (ТОЛЬКО ОДИН РАЗ!) -->
-            <div class="product-tabs">
-                <div class="tab-buttons">
-                    <button class="tab-btn active" data-tab="description">Описание</button>
-                    <button class="tab-btn" data-tab="specs">Характеристики</button>
-                </div>
-                <div class="tab-content active" id="descriptionTab"><p id="detailDescription"></p></div>
-                <div class="tab-content" id="specsTab"><table class="specs-table" id="detailSpecs"></table></div>
-            </div>
-        </div>
     </div>
 
     <!-- ==================== СТРАНИЦЫ С ИНФОРМАЦИЕЙ ==================== -->

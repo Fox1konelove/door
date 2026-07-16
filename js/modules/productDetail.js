@@ -40,6 +40,11 @@ export function openProductDetail(productId) {
     renderColorOptions();
     updateDetailPriceAndSku();
 
+    document.getElementById('categoryPage').classList.remove('active');
+    document.getElementById('categoryPage').style.display = 'none';
+    document.getElementById('infoPage').classList.remove('active');
+    document.getElementById('infoPage').style.display = 'none';
+
     // Показать страницу товара
     document.getElementById('mainPage').style.display = 'none';
     document.getElementById('productDetailPage').style.display = 'block';
