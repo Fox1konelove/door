@@ -60,6 +60,7 @@
 .category-filter-chip:hover {
     border-color: var(--color-primary);
     color: var(--color-primary);
+    transform: translateY(-2px);
 }
 
 .category-filter-chip.active {
@@ -75,7 +76,6 @@
     margin-bottom: 40px;
 }
 
-/* Статистика категории */
 .category-stats {
     text-align: center;
     padding: 20px;

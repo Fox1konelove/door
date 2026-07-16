@@ -1,5 +1,5 @@
 /* ============================================
-   СТРАНИЦЫ С ИНФОРМАЦИЕЙ (КАРТОЧКИ)
+   СТРАНИЦЫ С ИНФОРМАЦИЕЙ
    ============================================ */
 .info-page {
     display: none;
@@ -12,23 +12,10 @@
 }
 
 .info-page .breadcrumbs {
-    padding: 0 0 24px;
-    font-size: 0.875rem;
-    color: var(--color-text-light);
+    padding: 0 0 20px;
 }
 
-.info-page .breadcrumbs a {
-    color: var(--color-text-light);
-    text-decoration: none;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.info-page .breadcrumbs a:hover {
-    color: var(--color-accent);
-}
-
-/* ===== СЕТКА КАРТОЧЕК ===== */
+/* ===== КАРТОЧКИ СТАТЕЙ/СОВЕТОВ ===== */
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -43,7 +30,7 @@
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
     cursor: pointer;
-    border: 1px solid var(--color-gray-300);
+    border: 1px solid var(--color-gray-200);
 }
 
 .info-card-item:hover {
@@ -76,16 +63,18 @@
 .info-card-item .card-tag {
     display: inline-block;
     background: var(--color-accent);
-    color: white;
+    color: var(--color-white);
     padding: 2px 12px;
     border-radius: 20px;
     font-size: 0.7rem;
     font-weight: 600;
     margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .info-card-item .card-title {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 600;
     margin-bottom: 8px;
     color: var(--color-text-dark);
@@ -107,7 +96,7 @@
     align-items: center;
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid var(--color-gray-300);
+    border-top: 1px solid var(--color-gray-200);
     font-size: 0.8rem;
     color: var(--color-text-light);
 }
@@ -122,20 +111,83 @@
     color: var(--color-accent);
 }
 
-/* ===== СЕКЦИЯ "ВСЕ СТАТЬИ" ===== */
-.info-section-title {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--color-text-dark);
-    margin: 40px 0 8px;
-}
-
 .info-section-subtitle {
+    text-align: center;
     color: var(--color-text-light);
-    margin-bottom: 24px;
+    font-size: 1.05rem;
+    margin-bottom: 32px;
 }
 
-/* ===== АДАПТАЦИЯ ===== */
+/* ===== FAQ АККОРДЕОН ===== */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 12px;
+    overflow: hidden;
+    background: var(--color-white);
+    transition: var(--transition);
+}
+
+.faq-item:hover {
+    border-color: var(--color-primary);
+}
+
+.faq-question {
+    padding: 16px 24px;
+    background: var(--color-gray-50);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: var(--transition);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    color: var(--color-text-dark);
+}
+
+.faq-question:hover {
+    background: var(--color-gray-200);
+}
+
+.faq-question::after {
+    content: '▼';
+    font-size: 0.8rem;
+    transition: var(--transition);
+    color: var(--color-primary);
+}
+
+.faq-item.active .faq-question::after {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 24px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: var(--color-white);
+}
+
+.faq-item.active .faq-answer {
+    padding: 16px 24px;
+    max-height: 500px;
+}
+
+.faq-answer p {
+    margin-bottom: 0;
+    color: var(--color-text-light);
+    line-height: 1.7;
+}
+
+/* ============================================
+   АДАПТАЦИЯ
+   ============================================ */
 @media (max-width: 768px) {
     .info-grid {
         grid-template-columns: 1fr;
@@ -150,7 +202,12 @@
         font-size: 1.05rem;
     }
 
-    .info-section-title {
-        font-size: 1.4rem;
+    .faq-question {
+        font-size: 0.95rem;
+        padding: 14px 18px;
+    }
+
+    .faq-answer {
+        font-size: 0.9rem;
     }
 }
