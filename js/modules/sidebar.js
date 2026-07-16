@@ -1,11 +1,11 @@
 // modules/sidebar.js
 import { filterByCategory } from './filters.js';
+import { openInfoPage } from './infoPages.js';
 
 export function initSidebar() {
     const toggleBtn = document.getElementById('catalogToggleBtn');
     const closeBtn = document.getElementById('sidebarClose');
     const overlay = document.getElementById('sidebarOverlay');
-    const sidebar = document.getElementById('leftSidebar');
 
     if (toggleBtn) {
         toggleBtn.addEventListener('click', toggleSidebar);
@@ -19,12 +19,46 @@ export function initSidebar() {
         overlay.addEventListener('click', closeSidebar);
     }
 
-    // Категории в сайдбаре
-    document.querySelectorAll('.sidebar-category').forEach(item => {
+    // Слушаем событие закрытия
+    document.addEventListener('closeSidebar', closeSidebar);
+
+    // Категории дверей в сайдбаре
+    document.querySelectorAll('.sidebar-category:not(.info-category)').forEach(item => {
         item.addEventListener('click', () => {
             document.querySelectorAll('.sidebar-category').forEach(c => c.classList.remove('active'));
             item.classList.add('active');
-            filterByCategory(item.dataset.category);
+
+            const category = item.dataset.category;
+            filterByCategory(category);
+
+            // Синхронизация с шапкой
+            document.querySelectorAll('.nav-category').forEach(link => {
+                const isActive = link.dataset.section === category || (category === 'all' && link.dataset.section === 'all');
+                link.classList.toggle('active', isActive);
+            });
+
+            // Убираем активность с информационных ссылок
+            document.querySelectorAll('.nav-category.info-link').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            setTimeout(() => {
+                const grid = document.getElementById('productsGrid');
+                if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+
+            closeSidebar();
+        });
+    });
+
+    // Информационные разделы в сайдбаре
+    document.querySelectorAll('.sidebar-category.info-category').forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelectorAll('.sidebar-category').forEach(c => c.classList.remove('active'));
+            item.classList.add('active');
+
+            const section = item.dataset.category;
+            openInfoPage(section);
             closeSidebar();
         });
     });
