@@ -1,4 +1,4 @@
-// modules/search.js
+// modules/search.js 
 import { products } from '../data/products.js';
 import { openModal, closeModal } from './modals.js';
 import { openProductDetail } from './productDetail.js';
