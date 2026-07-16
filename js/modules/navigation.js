@@ -2,73 +2,34 @@
 import { filterByCategory } from './filters.js';
 import { showMainPage } from './productDetail.js';
 import { openInfoPage, showMainPageFromInfo } from './infoPages.js';
+import { openCategoryPage, showMainPageFromCategory } from './categoryPages.js';
 import { closeSidebar } from './sidebar.js';
 
 export function initNavigation() {
-    // Логотип
+    // ===== ЛОГОТИП =====
     document.getElementById('logoLink')?.addEventListener('click', () => {
-        showMainPage();
-        // Скрываем страницу информации
         showMainPageFromInfo();
-        // Активируем "Все двери"
+        showMainPageFromCategory();
+        showMainPage();
         document.querySelectorAll('.nav-category').forEach(link => {
             link.classList.remove('active');
         });
         document.querySelector('.nav-category[data-section="all"]')?.classList.add('active');
     });
 
-    // ===== КАТЕГОРИИ ДВЕРЕЙ В ШАПКЕ =====
-    document.querySelectorAll('.nav-category:not(.info-link)').forEach(link => {
-        link.addEventListener('click', () => {
-            // Скрываем информационную страницу
+    // ===== КНОПКА "НАЗАД" НА СТРАНИЦЕ ТОВАРА =====
+    document.querySelectorAll('.back-to-main').forEach(el => {
+        el.addEventListener('click', () => {
             showMainPageFromInfo();
-
-            document.querySelectorAll('.nav-category').forEach(l => l.classList.remove('active'));
-            link.classList.add('active');
-
-            const category = link.dataset.section;
-            if (category === 'all') {
-                filterByCategory('all');
-                showMainPage();
-            } else {
-                showMainPage();
-                setTimeout(() => {
-                    filterByCategory(category);
-                    const grid = document.getElementById('productsGrid');
-                    if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 100);
-            }
-        });
-    });
-
-    // ===== ИНФОРМАЦИОННЫЕ РАЗДЕЛЫ В ШАПКЕ =====
-    // Обрабатываются в infoPages.js
-
-    // ===== УСЛУГИ, ДОСТАВКА, КОНТАКТЫ =====
-    document.querySelectorAll('.nav-links a:not(.nav-category)').forEach(link => {
-        link.addEventListener('click', () => {
-            showMainPageFromInfo();
+            showMainPageFromCategory();
             showMainPage();
-            setTimeout(() => scrollToSection(link.dataset.section), 100);
-        });
-    });
-
-    // ===== КАТЕГОРИИ В ФУТЕРЕ =====
-    document.querySelectorAll('.footer-category').forEach(link => {
-        link.addEventListener('click', () => {
-            showMainPageFromInfo();
-            showMainPage();
-            setTimeout(() => {
-                filterByCategory(link.dataset.cat);
-                const grid = document.getElementById('productsGrid');
-                if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
         });
     });
 
     // ===== КНОПКИ =====
     document.getElementById('catalogScrollBtn')?.addEventListener('click', () => {
         showMainPageFromInfo();
+        showMainPageFromCategory();
         showMainPage();
         setTimeout(() => {
             const grid = document.getElementById('productsGrid');
@@ -80,19 +41,13 @@ export function initNavigation() {
         showNotification('Заявка на бесплатный замер принята');
     });
 
-    // ===== "НАЗАД" НА СТРАНИЦЕ ТОВАРА =====
-    document.querySelectorAll('.back-to-main').forEach(el => {
-        el.addEventListener('click', () => {
+    // ===== УСЛУГИ, ДОСТАВКА, КОНТАКТЫ =====
+    document.querySelectorAll('.nav-links a:not(.nav-category)').forEach(link => {
+        link.addEventListener('click', () => {
             showMainPageFromInfo();
+            showMainPageFromCategory();
             showMainPage();
-        });
-    });
-
-    // ===== ОБРАБОТКА КНОПКИ "НАЗАД" НА СТРАНИЦЕ ИНФОРМАЦИИ =====
-    document.querySelectorAll('#infoPage .back-to-main').forEach(el => {
-        el.addEventListener('click', () => {
-            showMainPageFromInfo();
-            showMainPage();
+            setTimeout(() => scrollToSection(link.dataset.section), 100);
         });
     });
 }
