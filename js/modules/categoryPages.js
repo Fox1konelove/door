@@ -1,4 +1,4 @@
-// modules/categoryPages.js — обновлённая версия
+// modules/categoryPages.js — ИСПРАВЛЕННАЯ ВЕРСИЯ
 
 import { products } from '../data/products.js';
 import { addToCartSimple } from './cart.js';
@@ -85,7 +85,6 @@ export function initCategoryPages() {
         }
     });
 
-    // Событие для возврата на главную из категории
     document.addEventListener('showMainFromCategory', showMainPageFromCategory);
 }
 
@@ -96,21 +95,38 @@ export function openCategoryPage(category) {
     currentCategory = category;
     currentSubFilter = 'all';
 
-    // Скрываем всё
-    document.getElementById('mainPage').style.display = 'none';
-    document.getElementById('productDetailPage').style.display = 'none';
-    document.getElementById('infoPage').classList.remove('active');
-    document.getElementById('infoPage').style.display = 'none';
+    // ✅ ПРОВЕРКА: Скрываем всё, если элементы существуют
+    const mainPage = document.getElementById('mainPage');
+    if (mainPage) mainPage.style.display = 'none';
 
-    // Показываем страницу категории
+    const detailPage = document.getElementById('productDetailPage');
+    if (detailPage) detailPage.style.display = 'none';
+
+    const infoPage = document.getElementById('infoPage');
+    if (infoPage) {
+        infoPage.classList.remove('active');
+        infoPage.style.display = 'none';
+    }
+
+    // ✅ ПРОВЕРКА: Показываем страницу категории
     const page = document.getElementById('categoryPage');
+    if (!page) {
+        console.error('❌ Элемент #categoryPage не найден в HTML! Добавьте его в index.html');
+        return;
+    }
+    
     page.classList.add('active');
     page.style.display = 'block';
 
-    // Заполняем контент
-    document.getElementById('categoryBreadcrumb').textContent = data.title;
-    document.getElementById('categoryPageTitle').textContent = data.title;
-    document.getElementById('categoryDescription').textContent = data.description;
+    // ✅ ПРОВЕРКА: Заполняем контент
+    const breadcrumb = document.getElementById('categoryBreadcrumb');
+    if (breadcrumb) breadcrumb.textContent = data.title;
+
+    const title = document.getElementById('categoryPageTitle');
+    if (title) title.textContent = data.title;
+
+    const description = document.getElementById('categoryDescription');
+    if (description) description.textContent = data.description;
 
     renderCategoryProducts(category, 'all');
 
@@ -135,7 +151,10 @@ export function openCategoryPage(category) {
 
 function renderCategoryProducts(category, filter) {
     const grid = document.getElementById('categoryProductsGrid');
-    if (!grid) return;
+    if (!grid) {
+        console.error('❌ Элемент #categoryProductsGrid не найден!');
+        return;
+    }
 
     let filtered = products.filter(p => p.category === category);
 
@@ -208,6 +227,7 @@ function updateStats(count) {
     let stats = document.querySelector('.category-stats');
     if (!stats) {
         const container = document.querySelector('.category-page .container');
+        if (!container) return;
         stats = document.createElement('div');
         stats.className = 'category-stats';
         container.appendChild(stats);
@@ -216,16 +236,29 @@ function updateStats(count) {
 }
 
 export function showMainPageFromCategory() {
+    // ✅ ПРОВЕРКА: Скрываем страницу категории
     const page = document.getElementById('categoryPage');
-    page.classList.remove('active');
-    page.style.display = 'none';
+    if (page) {
+        page.classList.remove('active');
+        page.style.display = 'none';
+    }
 
-    document.getElementById('mainPage').style.display = 'block';
+    // ✅ ПРОВЕРКА: Показываем главную страницу
+    const mainPage = document.getElementById('mainPage');
+    if (mainPage) {
+        mainPage.style.display = 'block';
+    } else {
+        console.error('❌ Элемент #mainPage не найден!');
+        return;
+    }
 
+    // Обновляем активные ссылки
     document.querySelectorAll('.nav-category').forEach(link => {
         link.classList.remove('active');
     });
-    document.querySelector('.nav-category[data-section="all"]')?.classList.add('active');
+    
+    const allLink = document.querySelector('.nav-category[data-section="all"]');
+    if (allLink) allLink.classList.add('active');
 
     document.querySelectorAll('.sidebar-category').forEach(item => {
         item.classList.remove('active');
