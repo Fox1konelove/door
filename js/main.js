@@ -1,5 +1,6 @@
-// main.js — обновлённая версия
+// main.js — ИСПРАВЛЕННАЯ ВЕРСИЯ (БЕЗ ДУБЛЕЙ)
 
+// ===== ИМПОРТЫ (КАЖДЫЙ ТОЛЬКО ОДИН РАЗ!) =====
 import { initCart } from './modules/cart.js';
 import { initFilters } from './modules/filters.js';
 import { initSlider } from './modules/slider.js';
@@ -10,25 +11,25 @@ import { initAuth } from './modules/auth.js';
 import { initChat } from './modules/chat.js';
 import { initNavigation } from './modules/navigation.js';
 import { initProductDetail } from './modules/productDetail.js';
-import { initInfoPages, openInfoPage } from './modules/infoPages.js';
-import { initCategoryPages, openCategoryPage, getCategoryFromURL, showMainPageFromCategory } from './modules/categoryPages.js';
-import { renderCategories } from './modules/renderers.js';
-// ⚠️ УБИРАЕМ renderProducts — он больше не нужен на главной
+import { initInfoPages } from './modules/infoPages.js';
+import { initCategoryPages } from './modules/categoryPages.js';
+import { renderCategories } from './modules/renderers.js';   // ✅ ТОЛЬКО ОДИН РАЗ!
 import { showMainPage } from './modules/productDetail.js';
 import { showMainPageFromInfo } from './modules/infoPages.js';
+import { showMainPageFromCategory } from './modules/categoryPages.js';
 import { CONFIG } from './config.js';
 
+// ===== ОСНОВНОЙ КОД =====
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Инициализация корзины
     initCart();
 
-    // 2. Рендеринг компонентов (только категории и слайдер)
-    renderCategories();
-    // ⚠️ УБИРАЕМ renderProducts('all') — товары только на страницах категорий
+    // 2. Рендеринг компонентов
+    renderCategories();  // ✅ ТОЛЬКО ОДИН РАЗ!
     initSlider();
 
     // 3. Инициализация всех модулей
-    // ⚠️ УБИРАЕМ initFilters() — фильтры больше не нужны на главной
+    initFilters();
     initSidebar();
     initModals();
     initSearch();
@@ -43,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('popstate', (e) => {
         const state = e.state || {};
 
-        // Закрываем все страницы
         document.getElementById('mainPage').style.display = 'none';
         document.getElementById('productDetailPage').style.display = 'none';
         document.getElementById('infoPage').classList.remove('active');
@@ -64,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 module.openCategoryPage(state.category);
             });
         } else {
-            // Главная страница
             showMainPageFromInfo();
             showMainPageFromCategory();
             showMainPage();
