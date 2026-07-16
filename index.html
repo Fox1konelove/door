@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/components/info-pages.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/components/info-modal.css">
+    <link rel="stylesheet" href="css/components/category-page.css">
 </head>
 <body>
 
@@ -313,7 +314,81 @@
     <!-- ===== КОНЕЦ ГЛАВНОЙ СТРАНИЦЫ ===== -->
 
     <!-- ========================================================== -->
-    <!-- ===== СТРАНИЦА КАТЕГОРИИ (НОВЫЙ БЛОК) ===== -->
+    <!-- ===== СТРАНИЦА ТОВАРА ===== -->
+    <!-- ========================================================== -->
+    <div id="productDetailPage" class="product-detail-page">
+        <div class="container">
+            <!-- Хлебные крошки -->
+            <div class="breadcrumbs">
+                <a class="back-to-main">Главная</a> /
+                <a class="back-to-main">Каталог</a> /
+                <span id="breadcrumbCategory"></span> /
+                <span id="breadcrumbTitle"></span>
+            </div>
+
+            <!-- Основная сетка -->
+            <div class="product-detail-grid">
+                <!-- Галерея -->
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="" alt="" id="detailMainImg">
+                    </div>
+                    <div class="thumbnail-list" id="detailThumbnails"></div>
+                </div>
+
+                <!-- Информация о товаре -->
+                <div class="product-detail-info">
+                    <h1 class="product-detail-title" id="detailTitle"></h1>
+                    <div class="product-detail-sku" id="detailSku"></div>
+                    <div>
+                        <span class="product-detail-current-price" id="detailCurrentPrice"></span>
+                        <span class="product-detail-old-price" id="detailOldPrice" style="display:none;"></span>
+                    </div>
+
+                    <!-- Размеры -->
+                    <div class="option-group">
+                        <label class="option-label">Размер полотна:</label>
+                        <div class="size-options" id="detailSizeOptions"></div>
+                    </div>
+
+                    <!-- Цвет -->
+                    <div class="option-group">
+                        <label class="option-label">Цвет/Отделка:</label>
+                        <div class="color-options" id="detailColorOptions"></div>
+                    </div>
+
+                    <!-- Кнопка добавления -->
+                    <button class="btn btn-primary add-to-cart-btn" id="detailAddToCartBtn">
+                        Добавить в корзину
+                    </button>
+
+                    <!-- Бейджи -->
+                    <div style="margin-top:24px; padding-top:24px; border-top:1px solid var(--color-gray-300); display:flex; gap:16px; flex-wrap:wrap;">
+                        <span>✅ Гарантия 10 лет</span>
+                        <span>🚚 Бесплатная доставка от 30 000 ₽</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== ВКЛАДКИ ===== -->
+            <div class="product-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="description">Описание</button>
+                    <button class="tab-btn" data-tab="specs">Характеристики</button>
+                </div>
+                <div class="tab-content active" id="descriptionTab">
+                    <p id="detailDescription"></p>
+                </div>
+                <div class="tab-content" id="specsTab">
+                    <table class="specs-table" id="detailSpecs"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ===== КОНЕЦ СТРАНИЦЫ ТОВАРА ===== -->
+
+    <!-- ========================================================== -->
+    <!-- ===== СТРАНИЦА КАТЕГОРИИ ===== -->
     <!-- ========================================================== -->
     <div id="categoryPage" class="category-page">
         <div class="container">
@@ -330,7 +405,9 @@
     </div>
     <!-- ===== КОНЕЦ СТРАНИЦЫ КАТЕГОРИИ ===== -->
 
-    <!-- ==================== СТРАНИЦЫ С ИНФОРМАЦИЕЙ ==================== -->
+    <!-- ========================================================== -->
+    <!-- ===== СТРАНИЦЫ С ИНФОРМАЦИЕЙ ===== -->
+    <!-- ========================================================== -->
     <div id="infoPage" class="info-page">
         <div class="container">
             <div class="breadcrumbs">
