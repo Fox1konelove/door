@@ -14,7 +14,7 @@ import { initInfoPages, openInfoPage } from './modules/infoPages.js';
 import { initCategoryPages, openCategoryPage, getCategoryFromURL, showMainPageFromCategory } from './modules/categoryPages.js';
 import { renderCategories } from './modules/renderers.js';
 // ⚠️ УБИРАЕМ renderProducts — он больше не нужен на главной
-import { renderCategories } from './modules/renderers.js';
+import { renderProducts } from './modules/renderers.js';
 import { showMainPage } from './modules/productDetail.js';
 import { showMainPageFromInfo } from './modules/infoPages.js';
 import { CONFIG } from './config.js';
