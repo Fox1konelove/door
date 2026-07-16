@@ -1,6 +1,6 @@
-// modules/search.js 
+// modules/search.js
 import { products } from '../data/products.js';
-import { openModal, closeModal } from './modals.js';
+import { openModal, closeModal } from './modals.js';   // ✅ ПРАВИЛЬНЫЙ ИМПОРТ
 import { openProductDetail } from './productDetail.js';
 
 export function initSearch() {
@@ -51,7 +51,7 @@ function handleSearch(e) {
             el.addEventListener('click', () => {
                 const id = parseInt(el.dataset.id);
                 openProductDetail(id);
-                closeModal('searchModal');
+                closeModal('searchModal');   // ✅ ТЕПЕРЬ РАБОТАЕТ
             });
         });
     }

@@ -1,4 +1,4 @@
-/* // modules/modals.js
+// modules/modals.js — ПОЛНАЯ ВЕРСИЯ
 import { getCart, getCartTotal, updateQuantity, removeFromCart, clearCart } from './cart.js';
 import { showNotification } from './notifications.js';
 
@@ -36,7 +36,7 @@ export function openModal(modalId) {
     }
 }
 
-export function closeModal(modalId) {
+export function closeModal(modalId) {   // ✅ ЭКСПОРТ ДОБАВЛЕН
     const modal = document.getElementById(modalId);
     if (modal) {
         modal.style.display = 'none';
@@ -70,13 +70,12 @@ function openCartModal() {
             </div>
         `).join('');
 
-        // Обработчики
         itemsList.querySelectorAll('.quantity-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 const idx = parseInt(btn.dataset.index);
                 const delta = parseInt(btn.dataset.delta);
                 updateQuantity(idx, delta);
-                openCartModal(); // перерисовка
+                openCartModal();
             });
         });
 
@@ -105,4 +104,4 @@ function checkout() {
         clearCart();
         closeModal('cartModal');
     }
-} */
+}
