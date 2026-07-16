@@ -1,0 +1,176 @@
+/* ============================================
+   СТРАНИЦЫ С ИНФОРМАЦИЕЙ
+   ============================================ */
+.info-page {
+    display: none;
+    padding: 40px 0 80px;
+    background: var(--color-bg-light);
+}
+
+.info-page.active {
+    display: block;
+}
+
+.info-page .breadcrumbs {
+    padding: 0 0 24px;
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+}
+
+.info-page .breadcrumbs a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.info-page .breadcrumbs a:hover {
+    color: var(--color-accent);
+}
+
+.info-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--color-white);
+    padding: 48px;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.info-content h2 {
+    font-size: 1.8rem;
+    margin: 32px 0 16px;
+    color: var(--color-primary);
+}
+
+.info-content h3 {
+    font-size: 1.3rem;
+    margin: 24px 0 12px;
+    color: var(--color-text-dark);
+}
+
+.info-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text-light);
+    margin-bottom: 16px;
+}
+
+.info-content ul {
+    padding-left: 24px;
+    margin-bottom: 16px;
+}
+
+.info-content ul li {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text-light);
+    margin-bottom: 8px;
+}
+
+.info-content .info-card {
+    background: var(--color-gray-100);
+    padding: 24px 32px;
+    border-radius: var(--border-radius-sm);
+    margin: 20px 0;
+    border-left: 4px solid var(--color-accent);
+}
+
+.info-content .info-card h4 {
+    color: var(--color-primary);
+    margin-bottom: 8px;
+}
+
+.info-content .info-card p {
+    margin-bottom: 0;
+}
+
+/* Таблица размеров */
+.info-content .size-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.info-content .size-table th,
+.info-content .size-table td {
+    padding: 12px 16px;
+    border: 1px solid var(--color-gray-300);
+    text-align: left;
+}
+
+.info-content .size-table th {
+    background: var(--color-primary);
+    color: white;
+    font-weight: 600;
+}
+
+.info-content .size-table tr:nth-child(even) {
+    background: var(--color-gray-100);
+}
+
+/* Аккордеон для FAQ */
+.faq-item {
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 16px 24px;
+    background: var(--color-gray-100);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: var(--transition);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+}
+
+.faq-question:hover {
+    background: var(--color-gray-300);
+}
+
+.faq-question::after {
+    content: '▼';
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+.faq-item.active .faq-question::after {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 24px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    padding: 16px 24px;
+    max-height: 500px;
+}
+
+.faq-answer p {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .info-content {
+        padding: 24px;
+    }
+
+    .info-content h2 {
+        font-size: 1.4rem;
+    }
+
+    .info-content p,
+    .info-content ul li {
+        font-size: 0.95rem;
+    }
+}

@@ -1,5 +1,5 @@
 /* ============================================
-   ШАПКА САЙТА - ОБНОВЛЕННАЯ
+   ШАПКА САЙТА - ПРИКЛЕЕННАЯ
    ============================================ */
 .top-bar {
     background: var(--color-primary-dark);
@@ -24,31 +24,33 @@
     color: var(--color-accent);
 }
 
+/* ===== ОСНОВНАЯ ШАПКА - ПРИКЛЕЕНА ===== */
 .main-header {
     background: var(--color-white);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid var(--color-gray-300);
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 72px;
     gap: 16px;
 }
 
 .logo-area {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
     flex-shrink: 0;
 }
 
 .logo {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     font-weight: 700;
     text-decoration: none;
     color: var(--color-primary);
@@ -60,21 +62,44 @@
     color: var(--color-accent);
 }
 
-/* ===== КАТЕГОРИИ В ШАПКЕ ===== */
+/* ===== КНОПКА КАТАЛОГА ===== */
+.catalog-toggle-btn {
+    background: var(--color-primary);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 60px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.catalog-toggle-btn:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== НАВИГАЦИЯ ===== */
 .nav-links {
     display: flex;
-    gap: 8px;
+    gap: 4px;
     align-items: center;
-    flex-wrap: wrap;
     flex: 1;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .nav-category {
     text-decoration: none;
     color: var(--color-text-dark);
     font-weight: 500;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     padding: 6px 14px;
     border-radius: 60px;
     transition: var(--transition);
@@ -98,9 +123,34 @@
     background: var(--color-primary-dark);
 }
 
+/* === НОВЫЕ РАЗДЕЛЫ (СТАТЬИ, СОВЕТЫ) === */
+.nav-category.info-link {
+    color: var(--color-text-light);
+    font-weight: 400;
+    font-size: 0.78rem;
+}
+
+.nav-category.info-link:hover {
+    color: var(--color-accent);
+    background: transparent;
+}
+
+.nav-category.info-link.active {
+    color: var(--color-accent);
+    background: rgba(198, 164, 59, 0.1);
+    border-color: var(--color-accent);
+}
+
+.nav-divider {
+    color: var(--color-gray-300);
+    font-size: 1.2rem;
+    margin: 0 4px;
+}
+
+/* ===== ПРАВАЯ ЧАСТЬ ===== */
 .header-actions {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     align-items: center;
     flex-shrink: 0;
 }
@@ -108,15 +158,15 @@
 .icon-btn {
     background: transparent;
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     cursor: pointer;
     padding: 8px;
     border-radius: 50%;
     transition: var(--transition);
     color: var(--color-text-dark);
     position: relative;
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -129,12 +179,12 @@
 
 .cart-badge {
     position: absolute;
-    top: -4px;
-    right: -4px;
+    top: -2px;
+    right: -2px;
     background: var(--color-accent);
     color: white;
-    font-size: 0.65rem;
-    font-weight: 600;
+    font-size: 0.6rem;
+    font-weight: 700;
     width: 18px;
     height: 18px;
     border-radius: 50%;
@@ -143,48 +193,29 @@
     justify-content: center;
 }
 
-/* Кнопка открытия каталога (осталась в шапке) */
-.catalog-toggle-btn {
-    background: var(--color-primary);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 60px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.85rem;
-    transition: var(--transition);
-    white-space: nowrap;
-}
-
-.catalog-toggle-btn:hover {
-    background: var(--color-primary-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
 /* ===== АДАПТАЦИЯ ===== */
 @media (max-width: 992px) {
     .navbar {
         flex-wrap: wrap;
         height: auto;
-        gap: 12px;
-        padding: 12px 0;
+        gap: 10px;
+        padding: 10px 0;
     }
 
     .nav-links {
         order: 3;
         width: 100%;
         justify-content: center;
-        gap: 4px;
+        gap: 3px;
     }
 
     .nav-category {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         padding: 4px 10px;
+    }
+
+    .nav-category.info-link {
+        font-size: 0.7rem;
     }
 
     .logo-area {
@@ -198,16 +229,20 @@
 
 @media (max-width: 768px) {
     .nav-category {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         padding: 3px 8px;
     }
 
     .catalog-toggle-btn {
         padding: 6px 12px;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 
     .logo {
         font-size: 1.1rem;
+    }
+
+    .nav-divider {
+        display: none;
     }
 }

@@ -6,7 +6,7 @@
     <title>Двери-Мастер | Элитные двери премиум-класса</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     
-    <!-- ===== CSS ===== -->
+    <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/components/header.css">
     <link rel="stylesheet" href="css/components/sidebar.css">
@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="css/components/modals.css">
     <link rel="stylesheet" href="css/components/cart.css">
     <link rel="stylesheet" href="css/components/chat.css">
+    <link rel="stylesheet" href="css/components/info-pages.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
@@ -36,70 +37,88 @@
         </div>
     </div>
 
-    <!-- ==================== ОСНОВНАЯ ШАПКА (ОБНОВЛЕННАЯ) ==================== -->
-<header class="main-header">
-    <div class="container">
-        <div class="navbar">
-            <div class="logo-area">
-                <div class="logo" id="logoLink">Двери<span>Мастер</span></div>
-                <!-- КНОПКА КАТАЛОГА ПЕРЕНЕСЕНА В ШАПКУ -->
-                <button class="catalog-toggle-btn" id="catalogToggleBtn">☰ Каталог</button>
-            </div>
-            <div class="nav-links">
-                <!-- ДОБАВЛЯЕМ ССЫЛКИ НА КАТЕГОРИИ -->
-                <a data-section="all" class="nav-category active">Все двери</a>
-                <a data-section="Межкомнатные" class="nav-category">Межкомнатные</a>
-                <a data-section="Входные" class="nav-category">Входные</a>
-                <a data-section="Офисные" class="nav-category">Офисные</a>
-                <a data-section="Противопожарные" class="nav-category">Противопожарные</a>
-                <a data-section="Раздвижные" class="nav-category">Раздвижные</a>
-                <a data-section="Стеклянные" class="nav-category">Стеклянные</a>
-            </div>
-            <div class="header-actions">
-                <button class="icon-btn" id="accountBtn">👤</button>
-                <button class="icon-btn" id="searchBtn">🔍</button>
-                <button class="icon-btn" id="cartBtn">🛒<span class="cart-badge" id="cartCount">0</span></button>
+    <!-- ==================== ОСНОВНАЯ ШАПКА (ПРИКЛЕЕННАЯ) ==================== -->
+    <header class="main-header" id="mainHeader">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo-area">
+                    <div class="logo" id="logoLink">Двери<span>Мастер</span></div>
+                    <button class="catalog-toggle-btn" id="catalogToggleBtn">☰ Каталог</button>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <!-- КАТЕГОРИИ ДВЕРЕЙ -->
+                    <a data-section="all" class="nav-category active">Все двери</a>
+                    <a data-section="Межкомнатные" class="nav-category">Межкомнатные</a>
+                    <a data-section="Входные" class="nav-category">Входные</a>
+                    <a data-section="Офисные" class="nav-category">Офисные</a>
+                    <a data-section="Противопожарные" class="nav-category">Противопожарные</a>
+                    <a data-section="Раздвижные" class="nav-category">Раздвижные</a>
+                    <a data-section="Стеклянные" class="nav-category">Стеклянные</a>
+                    <!-- === НОВЫЕ РАЗДЕЛЫ: ПОЛЕЗНАЯ ИНФОРМАЦИЯ === -->
+                    <span class="nav-divider">|</span>
+                    <a data-section="info" class="nav-category info-link">📖 Статьи</a>
+                    <a data-section="tips" class="nav-category info-link">💡 Советы</a>
+                    <a data-section="faq" class="nav-category info-link">❓ FAQ</a>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn" id="accountBtn">👤</button>
+                    <button class="icon-btn" id="searchBtn">🔍</button>
+                    <button class="icon-btn" id="cartBtn">🛒<span class="cart-badge" id="cartCount">0</span></button>
+                </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- ==================== ЛЕВАЯ ПАНЕЛЬ КАТАЛОГА (УБРАЛИ ЗАГОЛОВОК "Каталог дверей") ==================== -->
-<div class="sidebar-overlay" id="sidebarOverlay"></div>
-<aside class="left-sidebar" id="leftSidebar">
-    <div class="sidebar-header">
-        <!-- УБРАЛИ ЗАГОЛОВОК, ОСТАВИЛИ ТОЛЬКО КРЕСТИК -->
-        <button class="sidebar-close" id="sidebarClose">&times;</button>
-    </div>
-    <div class="sidebar-category active" data-category="all">
-        <span class="sidebar-category-icon">🚪</span>
-        <span>Все двери</span>
-    </div>
-    <div class="sidebar-category" data-category="Межкомнатные">
-        <span class="sidebar-category-icon">🏠</span>
-        <span>Межкомнатные</span>
-    </div>
-    <div class="sidebar-category" data-category="Входные">
-        <span class="sidebar-category-icon">🔒</span>
-        <span>Входные</span>
-    </div>
-    <div class="sidebar-category" data-category="Офисные">
-        <span class="sidebar-category-icon">🏢</span>
-        <span>Офисные</span>
-    </div>
-    <div class="sidebar-category" data-category="Противопожарные">
-        <span class="sidebar-category-icon">🔥</span>
-        <span>Противопожарные</span>
-    </div>
-    <div class="sidebar-category" data-category="Раздвижные">
-        <span class="sidebar-category-icon">↔️</span>
-        <span>Раздвижные</span>
-    </div>
-    <div class="sidebar-category" data-category="Стеклянные">
-        <span class="sidebar-category-icon">🪟</span>
-        <span>Стеклянные</span>
-    </div>
-</aside>
+    <!-- ==================== ЛЕВАЯ ПАНЕЛЬ КАТАЛОГА ==================== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="left-sidebar" id="leftSidebar">
+        <div class="sidebar-header">
+            <button class="sidebar-close" id="sidebarClose">&times;</button>
+        </div>
+        <div class="sidebar-category active" data-category="all">
+            <span class="sidebar-category-icon">🚪</span>
+            <span>Все двери</span>
+        </div>
+        <div class="sidebar-category" data-category="Межкомнатные">
+            <span class="sidebar-category-icon">🏠</span>
+            <span>Межкомнатные</span>
+        </div>
+        <div class="sidebar-category" data-category="Входные">
+            <span class="sidebar-category-icon">🔒</span>
+            <span>Входные</span>
+        </div>
+        <div class="sidebar-category" data-category="Офисные">
+            <span class="sidebar-category-icon">🏢</span>
+            <span>Офисные</span>
+        </div>
+        <div class="sidebar-category" data-category="Противопожарные">
+            <span class="sidebar-category-icon">🔥</span>
+            <span>Противопожарные</span>
+        </div>
+        <div class="sidebar-category" data-category="Раздвижные">
+            <span class="sidebar-category-icon">↔️</span>
+            <span>Раздвижные</span>
+        </div>
+        <div class="sidebar-category" data-category="Стеклянные">
+            <span class="sidebar-category-icon">🪟</span>
+            <span>Стеклянные</span>
+        </div>
+        <!-- === НОВЫЕ РАЗДЕЛЫ В БОКОВОМ МЕНЮ === -->
+        <div class="sidebar-divider"></div>
+        <div class="sidebar-category info-category" data-category="info">
+            <span class="sidebar-category-icon">📖</span>
+            <span>Статьи о дверях</span>
+        </div>
+        <div class="sidebar-category info-category" data-category="tips">
+            <span class="sidebar-category-icon">💡</span>
+            <span>Советы по выбору</span>
+        </div>
+        <div class="sidebar-category info-category" data-category="faq">
+            <span class="sidebar-category-icon">❓</span>
+            <span>Вопросы и ответы</span>
+        </div>
+    </aside>
 
     <!-- ==================== ГЛАВНАЯ СТРАНИЦА ==================== -->
     <div id="mainPage">
@@ -160,7 +179,7 @@
                             <span class="service-icon">🏭</span>
                         </div>
                         <h4>Собственное производство</h4>
-                        <p>Полный контроль качества на каждом этапе изготовления. Используем только проверенные материалы от надёжных поставщиков.</p>
+                        <p>Полный контроль качества на каждом этапе изготовления.</p>
                         <span class="service-badge">10+ лет опыта</span>
                     </div>
                     <div class="service-card">
@@ -168,7 +187,7 @@
                             <span class="service-icon">📏</span>
                         </div>
                         <h4>Бесплатный замер</h4>
-                        <p>Выезд профессионального инженера в день обращения. Точные замеры и консультация по выбору оптимального решения.</p>
+                        <p>Выезд профессионального инженера в день обращения.</p>
                         <span class="service-badge">Бесплатно</span>
                     </div>
                     <div class="service-card">
@@ -176,7 +195,7 @@
                             <span class="service-icon">🔧</span>
                         </div>
                         <h4>Монтаж за 1 день</h4>
-                        <p>Чистая установка без пыли и грязи. Профессиональное оборудование и опытные мастера с многолетним стажем.</p>
+                        <p>Чистая установка без пыли и грязи.</p>
                         <span class="service-badge">Быстро</span>
                     </div>
                     <div class="service-card">
@@ -184,7 +203,7 @@
                             <span class="service-icon">📜</span>
                         </div>
                         <h4>Гарантия 10 лет</h4>
-                        <p>Официальная гарантия на все двери и монтажные работы. Сервисное обслуживание и поддержка на протяжении всего срока.</p>
+                        <p>Официальная гарантия на все двери и монтажные работы.</p>
                         <span class="service-badge">Надёжно</span>
                     </div>
                 </div>
@@ -249,7 +268,7 @@
                     </div>
                     <div class="contact-info-block" style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%); color: white;">
                         <h4 style="color: white;">💬 Напишите менеджеру</h4>
-                        <p style="margin-bottom: 24px; opacity: 0.9;">Есть вопросы? Нажмите на кнопку чата в правом нижнем углу экрана для быстрой связи с нашим специалистом.</p>
+                        <p style="margin-bottom: 24px; opacity: 0.9;">Есть вопросы? Нажмите на кнопку чата в правом нижнем углу экрана.</p>
                         <div style="display: flex; flex-direction: column; gap: 16px;">
                             <div style="display: flex; align-items: center; gap: 12px;">
                                 <span style="font-size: 1.5rem;">✅</span>
@@ -280,9 +299,10 @@
                         <a class="footer-category" data-cat="Офисные">Офисные</a>
                     </div>
                     <div>
-                        <h4>Клиентам</h4>
-                        <a class="footer-nav" data-section="delivery">Доставка</a>
-                        <a class="footer-nav" data-section="services">Гарантия</a>
+                        <h4>Информация</h4>
+                        <a class="footer-info" data-section="info">Статьи</a>
+                        <a class="footer-info" data-section="tips">Советы</a>
+                        <a class="footer-info" data-section="faq">FAQ</a>
                     </div>
                     <div>
                         <h4>Контакты</h4>
@@ -298,78 +318,64 @@
     </div>
 
     <!-- ==================== СТРАНИЦА ТОВАРА ==================== -->
-<div id="productDetailPage" class="product-detail-page">
-    <div class="container">
-        <!-- Хлебные крошки -->
-        <div class="breadcrumbs">
-            <a class="back-to-main">Главная</a> /
-            <a class="back-to-main">Каталог</a> /
-            <span id="breadcrumbCategory"></span> /
-            <span id="breadcrumbTitle"></span>
-        </div>
-
-        <!-- Основная сетка: фото + информация -->
-        <div class="product-detail-grid">
-            <!-- Левая колонка - Галерея -->
-            <div class="product-gallery">
-                <div class="main-image">
-                    <img src="" alt="" id="detailMainImg">
-                </div>
-                <div class="thumbnail-list" id="detailThumbnails"></div>
+    <div id="productDetailPage" class="product-detail-page">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a class="back-to-main">Главная</a> /
+                <a class="back-to-main">Каталог</a> /
+                <span id="breadcrumbCategory"></span> /
+                <span id="breadcrumbTitle"></span>
             </div>
-
-            <!-- Правая колонка - Информация о товаре -->
-            <div class="product-detail-info">
-                <h1 class="product-detail-title" id="detailTitle"></h1>
-                <div class="product-detail-sku" id="detailSku"></div>
-                <div>
-                    <span class="product-detail-current-price" id="detailCurrentPrice"></span>
-                    <span class="product-detail-old-price" id="detailOldPrice" style="display:none;"></span>
+            <div class="product-detail-grid">
+                <div class="product-gallery">
+                    <div class="main-image"><img src="" alt="" id="detailMainImg"></div>
+                    <div class="thumbnail-list" id="detailThumbnails"></div>
                 </div>
-
-                <!-- Опции: размер -->
-                <div class="option-group">
-                    <label class="option-label">Размер полотна:</label>
-                    <div class="size-options" id="detailSizeOptions"></div>
+                <div class="product-detail-info">
+                    <h1 class="product-detail-title" id="detailTitle"></h1>
+                    <div class="product-detail-sku" id="detailSku"></div>
+                    <div>
+                        <span class="product-detail-current-price" id="detailCurrentPrice"></span>
+                        <span class="product-detail-old-price" id="detailOldPrice" style="display:none;"></span>
+                    </div>
+                    <div class="option-group">
+                        <label class="option-label">Размер полотна:</label>
+                        <div class="size-options" id="detailSizeOptions"></div>
+                    </div>
+                    <div class="option-group">
+                        <label class="option-label">Цвет/Отделка:</label>
+                        <div class="color-options" id="detailColorOptions"></div>
+                    </div>
+                    <button class="btn btn-primary add-to-cart-btn" id="detailAddToCartBtn">Добавить в корзину</button>
+                    <div style="margin-top:24px; padding-top:24px; border-top:1px solid var(--color-gray-300); display:flex; gap:16px; flex-wrap:wrap;">
+                        <span>✅ Гарантия 10 лет</span>
+                        <span>🚚 Бесплатная доставка от 30 000 ₽</span>
+                    </div>
                 </div>
-
-                <!-- Опции: цвет -->
-                <div class="option-group">
-                    <label class="option-label">Цвет/Отделка:</label>
-                    <div class="color-options" id="detailColorOptions"></div>
+            </div>
+            <!-- ВКЛАДКИ (ТОЛЬКО ОДИН РАЗ!) -->
+            <div class="product-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="description">Описание</button>
+                    <button class="tab-btn" data-tab="specs">Характеристики</button>
                 </div>
-
-                <!-- Кнопка добавления в корзину -->
-                <button class="btn btn-primary add-to-cart-btn" id="detailAddToCartBtn">
-                    Добавить в корзину
-                </button>
-
-                <!-- Бейджи преимуществ -->
-                <div class="product-benefits">
-                    <span>✅ Гарантия 10 лет</span>
-                    <span>🚚 Бесплатная доставка от 30 000 ₽</span>
-                </div>
+                <div class="tab-content active" id="descriptionTab"><p id="detailDescription"></p></div>
+                <div class="tab-content" id="specsTab"><table class="specs-table" id="detailSpecs"></table></div>
             </div>
         </div>
-
-        <!-- ========================================== -->
-        <!-- ВКЛАДКИ - ЕДИНСТВЕННЫЙ ЭКЗЕМПЛЯР          -->
-        <!-- ========================================== -->
-        <div class="product-tabs">
-            <div class="tab-buttons">
-                <button class="tab-btn active" data-tab="description">Описание</button>
-                <button class="tab-btn" data-tab="specs">Характеристики</button>
-            </div>
-            <div class="tab-content active" id="descriptionTab">
-                <p id="detailDescription"></p>
-            </div>
-            <div class="tab-content" id="specsTab">
-                <table class="specs-table" id="detailSpecs"></table>
-            </div>
-        </div>
-        <!-- ===== КОНЕЦ ВКЛАДОК ===== -->
     </div>
-</div>
+
+    <!-- ==================== СТРАНИЦЫ С ИНФОРМАЦИЕЙ ==================== -->
+    <div id="infoPage" class="info-page">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a class="back-to-main">Главная</a> /
+                <span id="infoBreadcrumb"></span>
+            </div>
+            <h1 class="section-title" id="infoPageTitle"></h1>
+            <div class="info-content" id="infoContent"></div>
+        </div>
+    </div>
 
     <!-- ==================== МОДАЛЬНЫЕ ОКНА ==================== -->
     <!-- Корзина -->

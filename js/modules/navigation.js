@@ -1,30 +1,39 @@
 // modules/navigation.js
 import { filterByCategory } from './filters.js';
 import { showMainPage } from './productDetail.js';
+import { openInfoPage, showMainPageFromInfo } from './infoPages.js';
 import { closeSidebar } from './sidebar.js';
 
 export function initNavigation() {
     // Логотип
-    document.getElementById('logoLink')?.addEventListener('click', showMainPage);
+    document.getElementById('logoLink')?.addEventListener('click', () => {
+        showMainPage();
+        // Скрываем страницу информации
+        showMainPageFromInfo();
+        // Активируем "Все двери"
+        document.querySelectorAll('.nav-category').forEach(link => {
+            link.classList.remove('active');
+        });
+        document.querySelector('.nav-category[data-section="all"]')?.classList.add('active');
+    });
 
-    // ===== КАТЕГОРИИ В ШАПКЕ =====
-    document.querySelectorAll('.nav-category').forEach(link => {
-        link.addEventListener('click', (e) => {
-            // Обновляем активный класс
+    // ===== КАТЕГОРИИ ДВЕРЕЙ В ШАПКЕ =====
+    document.querySelectorAll('.nav-category:not(.info-link)').forEach(link => {
+        link.addEventListener('click', () => {
+            // Скрываем информационную страницу
+            showMainPageFromInfo();
+
             document.querySelectorAll('.nav-category').forEach(l => l.classList.remove('active'));
             link.classList.add('active');
 
             const category = link.dataset.section;
             if (category === 'all') {
                 filterByCategory('all');
-                // Показываем главную страницу
                 showMainPage();
             } else {
-                // Показываем главную и фильтруем
                 showMainPage();
                 setTimeout(() => {
                     filterByCategory(category);
-                    // Прокручиваем к каталогу
                     const grid = document.getElementById('productsGrid');
                     if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 100);
@@ -32,9 +41,13 @@ export function initNavigation() {
         });
     });
 
-    // ===== НАВИГАЦИЯ ПО РАЗДЕЛАМ (услуги, доставка, контакты) =====
+    // ===== ИНФОРМАЦИОННЫЕ РАЗДЕЛЫ В ШАПКЕ =====
+    // Обрабатываются в infoPages.js
+
+    // ===== УСЛУГИ, ДОСТАВКА, КОНТАКТЫ =====
     document.querySelectorAll('.nav-links a:not(.nav-category)').forEach(link => {
         link.addEventListener('click', () => {
+            showMainPageFromInfo();
             showMainPage();
             setTimeout(() => scrollToSection(link.dataset.section), 100);
         });
@@ -43,6 +56,7 @@ export function initNavigation() {
     // ===== КАТЕГОРИИ В ФУТЕРЕ =====
     document.querySelectorAll('.footer-category').forEach(link => {
         link.addEventListener('click', () => {
+            showMainPageFromInfo();
             showMainPage();
             setTimeout(() => {
                 filterByCategory(link.dataset.cat);
@@ -54,6 +68,7 @@ export function initNavigation() {
 
     // ===== КНОПКИ =====
     document.getElementById('catalogScrollBtn')?.addEventListener('click', () => {
+        showMainPageFromInfo();
         showMainPage();
         setTimeout(() => {
             const grid = document.getElementById('productsGrid');
@@ -67,7 +82,18 @@ export function initNavigation() {
 
     // ===== "НАЗАД" НА СТРАНИЦЕ ТОВАРА =====
     document.querySelectorAll('.back-to-main').forEach(el => {
-        el.addEventListener('click', showMainPage);
+        el.addEventListener('click', () => {
+            showMainPageFromInfo();
+            showMainPage();
+        });
+    });
+
+    // ===== ОБРАБОТКА КНОПКИ "НАЗАД" НА СТРАНИЦЕ ИНФОРМАЦИИ =====
+    document.querySelectorAll('#infoPage .back-to-main').forEach(el => {
+        el.addEventListener('click', () => {
+            showMainPageFromInfo();
+            showMainPage();
+        });
     });
 }
 
@@ -78,7 +104,6 @@ export function scrollToSection(sectionId) {
     }
 }
 
-// Вспомогательная функция для уведомлений
 function showNotification(msg) {
     const n = document.createElement('div');
     n.textContent = msg;

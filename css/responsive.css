@@ -140,3 +140,51 @@ body.sidebar-open .footer {
         font-size: 0.85rem;
     }
 }
+/* ============================================
+   АДАПТАЦИЯ САЙДБАРА
+   ============================================ */
+.sidebar-divider {
+    height: 1px;
+    background: var(--color-gray-300);
+    margin: 12px 0;
+}
+
+.sidebar-category.info-category {
+    color: var(--color-text-light);
+    font-weight: 400;
+}
+
+.sidebar-category.info-category:hover {
+    color: var(--color-accent);
+}
+
+.sidebar-category.info-category.active {
+    background: rgba(198, 164, 59, 0.15);
+    color: var(--color-accent);
+}
+
+/* Адаптация при открытой панели */
+body.sidebar-open .hero,
+body.sidebar-open .categories,
+body.sidebar-open .slider-section,
+body.sidebar-open .main-content,
+body.sidebar-open .services,
+body.sidebar-open .contacts,
+body.sidebar-open .footer,
+body.sidebar-open .info-page {
+    padding-left: 280px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (max-width: 992px) {
+    body.sidebar-open .hero,
+    body.sidebar-open .categories,
+    body.sidebar-open .slider-section,
+    body.sidebar-open .main-content,
+    body.sidebar-open .services,
+    body.sidebar-open .contacts,
+    body.sidebar-open .footer,
+    body.sidebar-open .info-page {
+        padding-left: 0;
+    }
+}
