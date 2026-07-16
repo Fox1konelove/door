@@ -1,5 +1,5 @@
 /* ============================================
-   ЛЕВАЯ ПАНЕЛЬ КАТАЛОГА
+   ЛЕВАЯ ПАНЕЛЬ КАТАЛОГА (ОБНОВЛЕННАЯ)
    ============================================ */
 .left-sidebar {
     position: fixed;
@@ -9,11 +9,12 @@
     height: calc(100vh - 80px);
     background: var(--color-white);
     border-right: 1px solid var(--color-gray-300);
-    padding: 24px 16px;
+    padding: 16px 12px;
     overflow-y: auto;
     z-index: 999;
     transform: translateX(-100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-md);
 }
 
 .left-sidebar.active {
@@ -22,17 +23,10 @@
 
 .sidebar-header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 24px;
-    padding-bottom: 16px;
+    justify-content: flex-end;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
     border-bottom: 1px solid var(--color-gray-300);
-}
-
-.sidebar-header h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--color-primary);
 }
 
 .sidebar-close {
@@ -42,6 +36,7 @@
     cursor: pointer;
     color: var(--color-text-light);
     transition: var(--transition);
+    padding: 4px 8px;
 }
 
 .sidebar-close:hover {
@@ -53,27 +48,29 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 14px 16px;
+    padding: 12px 16px;
     border-radius: var(--border-radius-sm);
     text-decoration: none;
     color: var(--color-text-dark);
     transition: var(--transition);
     font-weight: 500;
     cursor: pointer;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .sidebar-category:hover {
     background: var(--color-gray-100);
+    transform: translateX(4px);
 }
 
 .sidebar-category.active {
     background: var(--color-primary);
     color: white;
+    box-shadow: var(--shadow-sm);
 }
 
 .sidebar-category-icon {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 }
 
 .sidebar-overlay {
