@@ -187,7 +187,6 @@ export function initInfoPages() {
         item.addEventListener('click', () => {
             const section = item.dataset.category;
             openInfoPage(section);
-            // Закрываем сайдбар
             const event = new CustomEvent('closeSidebar');
             document.dispatchEvent(event);
         });
@@ -211,20 +210,22 @@ export function initInfoPages() {
             }
         }
     });
-
-    // Обработка закрытия сайдбара (для связи с sidebar.js)
-    document.addEventListener('closeSidebar', () => {
-        // Это будет обработано в sidebar.js
-    });
 }
 
 export function openInfoPage(section) {
     const data = infoData[section];
     if (!data) return;
 
-    // Скрываем главную страницу и страницу товара
+    // Скрываем всё
     document.getElementById('mainPage').style.display = 'none';
     document.getElementById('productDetailPage').style.display = 'none';
+
+    // Скрываем страницу категории, если она открыта
+    const categoryPage = document.getElementById('categoryPage');
+    if (categoryPage) {
+        categoryPage.classList.remove('active');
+        categoryPage.style.display = 'none';
+    }
 
     // Показываем страницу информации
     const page = document.getElementById('infoPage');
@@ -248,17 +249,51 @@ export function openInfoPage(section) {
         }
     });
 
+    // Обновляем сайдбар
+    document.querySelectorAll('.sidebar-category').forEach(item => {
+        item.classList.remove('active');
+        if (item.dataset.category === section && item.classList.contains('info-category')) {
+            item.classList.add('active');
+        }
+    });
+
     // Обновляем историю
     history.pushState({ page: 'info', section: section }, '', `?info=${section}`);
 }
 
 export function showMainPageFromInfo() {
+    // 1. Скрываем страницу информации
     document.getElementById('infoPage').classList.remove('active');
     document.getElementById('infoPage').style.display = 'none';
+
+    // 2. Скрываем страницу категории (если она открыта)
+    const categoryPage = document.getElementById('categoryPage');
+    if (categoryPage) {
+        categoryPage.classList.remove('active');
+        categoryPage.style.display = 'none';
+    }
+
+    // 3. Показываем главную страницу
     document.getElementById('mainPage').style.display = 'block';
+
+    // 4. Убираем активность с информационных ссылок
     document.querySelectorAll('.nav-category.info-link').forEach(link => {
         link.classList.remove('active');
     });
-    // Активируем "Все двери"
+
+    // 5. Убираем активность с категорий дверей
+    document.querySelectorAll('.nav-category:not(.info-link)').forEach(link => {
+        link.classList.remove('active');
+    });
+
+    // 6. Активируем "Все двери"
     document.querySelector('.nav-category[data-section="all"]')?.classList.add('active');
+
+    // 7. Сбрасываем активность в сайдбаре
+    document.querySelectorAll('.sidebar-category').forEach(item => {
+        item.classList.remove('active');
+        if (item.dataset.category === 'all') {
+            item.classList.add('active');
+        }
+    });
 }

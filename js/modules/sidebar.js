@@ -1,6 +1,7 @@
 // modules/sidebar.js
 import { filterByCategory } from './filters.js';
 import { openInfoPage } from './infoPages.js';
+import { openCategoryPage } from './categoryPages.js';
 
 export function initSidebar() {
     const toggleBtn = document.getElementById('catalogToggleBtn');
@@ -22,36 +23,25 @@ export function initSidebar() {
     // Слушаем событие закрытия
     document.addEventListener('closeSidebar', closeSidebar);
 
-    // Категории дверей в сайдбаре
+    // ===== КАТЕГОРИИ ДВЕРЕЙ В САЙДБАРЕ =====
     document.querySelectorAll('.sidebar-category:not(.info-category)').forEach(item => {
         item.addEventListener('click', () => {
             document.querySelectorAll('.sidebar-category').forEach(c => c.classList.remove('active'));
             item.classList.add('active');
 
             const category = item.dataset.category;
-            filterByCategory(category);
-
-            // Синхронизация с шапкой
-            document.querySelectorAll('.nav-category').forEach(link => {
-                const isActive = link.dataset.section === category || (category === 'all' && link.dataset.section === 'all');
-                link.classList.toggle('active', isActive);
-            });
-
-            // Убираем активность с информационных ссылок
-            document.querySelectorAll('.nav-category.info-link').forEach(link => {
-                link.classList.remove('active');
-            });
-
-            setTimeout(() => {
-                const grid = document.getElementById('productsGrid');
-                if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
-
+            if (category === 'all') {
+                // Показываем главную страницу
+                const event = new CustomEvent('showMainFromCategory');
+                document.dispatchEvent(event);
+            } else {
+                openCategoryPage(category);
+            }
             closeSidebar();
         });
     });
 
-    // Информационные разделы в сайдбаре
+    // ===== ИНФОРМАЦИОННЫЕ РАЗДЕЛЫ В САЙДБАРЕ =====
     document.querySelectorAll('.sidebar-category.info-category').forEach(item => {
         item.addEventListener('click', () => {
             document.querySelectorAll('.sidebar-category').forEach(c => c.classList.remove('active'));

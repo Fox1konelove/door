@@ -1,4 +1,4 @@
-// modules/modals.js
+/* // modules/modals.js
 import { getCart, getCartTotal, updateQuantity, removeFromCart, clearCart } from './cart.js';
 import { showNotification } from './notifications.js';
 
@@ -105,4 +105,4 @@ function checkout() {
         clearCart();
         closeModal('cartModal');
     }
-}
+} */
